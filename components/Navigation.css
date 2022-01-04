@@ -1,0 +1,14 @@
+#navigation > img {
+    width: 80px;
+    height: auto;
+    border: 3px solid rgb(228, 93, 59);
+    margin-bottom: 35px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#navigation > img.active {
+    width: 90px;
+    border: 8px solid rgb(228, 93, 59);
+    margin-bottom: 30px;
+}
