@@ -3,12 +3,12 @@ import React from 'react';
 import './FormAddDeck.css';
 import FormAddCommander from './FormAddCommander';
 
-import white from '../../img/white.jpg';
-import blue from '../../img/blue.jpg';
-import black from '../../img/black.jpg';
-import red from '../../img/red.jpg';
-import green from '../../img/green.jpg';
-import colorless from '../../img/colorless.jpg';
+import white from '../../../img/white.jpg';
+import blue from '../../../img/blue.jpg';
+import black from '../../../img/black.jpg';
+import red from '../../../img/red.jpg';
+import green from '../../../img/green.jpg';
+import colorless from '../../../img/colorless.jpg';
 
 const FormAddDeck = () => {
   return (
