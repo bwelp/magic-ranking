@@ -6,7 +6,7 @@ import "./TablePlayers.css";
 function TablePlayers(props) {
     console.log(props);
 
-    props.onSavePlayers();
+    // props.onSavePlayers();
     
 
   return (
