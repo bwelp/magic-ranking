@@ -6,13 +6,16 @@ import "./TablePlayers.css";
 function TablePlayers(props) {
     console.log(props);
 
-    // props.onSavePlayers();
+    const removePlayerHandler = (player) => {
+      console.log(player);
+      props.onRemovePlayer(player);
+    }
     
 
   return (
     <ul>
       {props.items.map((player) => (
-        <PlayerItem key={player.id} player={player.player} id={player.id} />
+        <PlayerItem key={player.player} player={player.player} onRemovePlayer={removePlayerHandler} />
       ))}
     </ul>
   );

@@ -8,8 +8,7 @@ const NewPlayer = (props) => {
 
   const savePlayerDataHandler = (enteredPlayerData) => {
     const playerData = {
-      ...enteredPlayerData,
-      id: parseInt(props.maxId) + 1
+      ...enteredPlayerData
     };
 
     props.onAddPlayer(playerData);

@@ -5,80 +5,89 @@ import TablePlayers from "./TablePlayers";
 
 function Players(props) {
   const [players, setPlayers] = useState([]);
-  const [maxId, setMaxId] = useState(0);
-  let playersRestored = false;
-
+  
   const savePlayers = () => {
     localStorage.setItem("players", JSON.stringify(players));
   };
-
-
 
   const restorePlayers = () => {
     let savedPlayers = localStorage.getItem("players");
     if (savedPlayers !== null && savedPlayers !== []) {
       JSON.parse(savedPlayers).forEach((player) => {
-        console.log(player);
         setPlayers((prevPlayers) => {
           return [...prevPlayers, player];
         });
       });
-      //   let idArr = [];
-      //   players.forEach(player => {
-      //     console.log(player.id);
-      //     idArr.push(parseInt(player.id));
-      //   })
-      //   console.log(idArr);
-      //   setMaxId(Math.max(idArr));
-      playersRestored = true;
     }
   };
 
-  const restoreMaxId = (p) => {
-    let idArr = [];
-    console.log(p);
-    if (p != null) {
-      p.forEach((player) => {
-        console.log(player.id);
-        idArr.push(parseInt(player.id));
-      });
-      console.log(idArr);
-      setMaxId(Math.max(idArr));
-    }
-  };
-
-  const addPlayerHandler = (player) => {
-    setPlayers((prevPlayers) => {
+  function addPlayerHandler(player) {
+    setPlayers(function(prevPlayers) {
       return [...prevPlayers, player];
     });
-
-    setMaxId(player.id);
   };
 
-  if (players.length === 0) {
-    restorePlayers(players);
-    // if (playersRestored === true) {
-    //   console.log(players);
-    //   restoreMaxId();
-    //   playersRestored = false;
-    // }
+  function removePlayerHandler(playerName) {
+    console.log(players);
+    setPlayers(function(prevPlayers) {
+      console.log(prevPlayers);
+      let index = -1;
+      for (let i = 0; i < prevPlayers.length; i++) {
+        if (prevPlayers[i].player === playerName) {
+          index = i;
+          break;
+        }
+      }
+
+      if (index !== -1) {
+        prevPlayers.splice(index, 1);
+      }
+      return [...prevPlayers];
+    });
   };
 
-  useEffect(() => {
-    if (players.length !== 0) {
-      savePlayers();
-    }
-    if (playersRestored === true) {
-      console.log(players);
-      restoreMaxId(players);
-      playersRestored = false;
-    }
-  });
+
+  // function removePlayerHandler(playerName)  {
+  //   let index = -1;
+  //   for (let i = 0; i < players.length; i++) {
+  //     if (players[i].player === playerName) {
+  //       index = i;
+  //       break;
+  //     }
+  //   }
+  //   console.log(index);
+  //   if (index !== -1) {
+  //     let playersCopy = players;
+  //     console.log(playersCopy);
+  //     playersCopy.splice(index, 1);
+  //     console.log(playersCopy);
+  //     setPlayers(function(playersCopy) {
+  //       return (playersCopy);
+  //     });
+  //     console.log(players);
+  //     // setPlayers(function(players) {
+  //     //   console.log(players);
+  //     //   players.splice(index, 1);
+  //     //   console.log(players);
+  //     //   return (players);
+  //     // });
+  //   }
+  // };
+
+  // if (players.length === 0) {
+  //   restorePlayers(players);
+  // };
+
+  // useEffect(() => {
+  //   if (players.length !== 0) {
+  //     savePlayers();
+  //   }
+  // });
 
   return (
     <div>
-      <NewPlayer onAddPlayer={addPlayerHandler} maxId={maxId} />
-      <TablePlayers items={players} />
+      <NewPlayer onAddPlayer={addPlayerHandler} />
+      <TablePlayers items={players} onRemovePlayer={removePlayerHandler} />
     </div>
   );
 }

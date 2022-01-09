@@ -9,7 +9,7 @@ const FormAddPlayer = (props) => {
     setEnteredPlayer(event.target.value);
   };
 
-  const submitHandler = (event) => {
+  function submitHandler(event) {
     event.preventDefault();
 
     const playerData = {
