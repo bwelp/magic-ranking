@@ -7,7 +7,6 @@ function TablePlayers(props) {
     console.log(props);
 
     const removePlayerHandler = (player) => {
-      console.log(player);
       props.onRemovePlayer(player);
     }
     

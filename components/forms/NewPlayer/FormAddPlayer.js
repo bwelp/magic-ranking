@@ -35,11 +35,11 @@ const FormAddPlayer = (props) => {
           />
         </div>
         <div className="add-player-action">
-          <button type="button" onClick={props.onCancel}>
-            abbrechen
-          </button>
           <button type="submit" form="add-player">
             hinzufügen
+          </button>
+          <button type="button" onClick={props.onCancel}>
+            abbrechen
           </button>
         </div>
       </div>
