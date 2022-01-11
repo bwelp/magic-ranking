@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./FormAddDeck.css";
 import FormAddDeckCommander from "./FormAddDeckCommander";
-import FormAddDeckPlayer from "./FormAddDeckPlayer";
+import FormAddPlayerOptions from "./FormAddPlayerOptions";
 
 import white from "../../../img/white.jpg";
 import blue from "../../../img/blue.jpg";
@@ -137,7 +137,7 @@ const FormAddDeck = (props) => {
           >
             <option value="">Spieler auswählen</option>
             {props.items.map(player => (
-              <FormAddDeckPlayer key={player} player={player} />
+              <FormAddPlayerOptions key={player} player={player} />
             ))}
 
           </select>

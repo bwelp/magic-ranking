@@ -5,6 +5,10 @@ import DeckItem from "./DeckItem";
 import "./TableDecks.css";
 
 function TableDecks(props) {
+  const removeDeckHandler = (deckname) => {
+    props.onRemoveDeck(deckname);
+  };
+
   return (
     <div>
       <table id="decklist">
@@ -14,6 +18,7 @@ function TableDecks(props) {
             <th>Spieler</th>
             <th>Farben</th>
             <th>Commander</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +35,7 @@ function TableDecks(props) {
               colorRed={deck.colorRed}
               colorGreen={deck.colorGreen}
               colorless={deck.colorless}
+              onRemoveDeck={removeDeckHandler}
             />
           ))}
         </tbody>

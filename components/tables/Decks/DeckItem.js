@@ -8,6 +8,10 @@ import green from "../../../img/green.jpg";
 import colorlessImg from "../../../img/colorless.jpg";
 
 const DeckItem = (props) => {
+  const removeDeckClickHandler = (event) => {
+    props.onRemoveDeck(event.target.attributes.deck.value);
+  };
+
   return (
     <tr>
       <td>{props.deckname}</td>
@@ -32,6 +36,9 @@ const DeckItem = (props) => {
         {props.commander}
         <br />
         {props.secondCommander}
+      </td>
+      <td>
+        <button type="click" onClick={removeDeckClickHandler} deck={props.deckname}>X</button>
       </td>
     </tr>
   );

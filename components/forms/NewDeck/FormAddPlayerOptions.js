@@ -1,9 +1,9 @@
 import React from "react";
 
-function FormAddDeckPlayer(props) {
+function FormAddPlayerOptions(props) {
   return(
       <option value={props.player}>{props.player}</option>
   )
 }
 
-export default FormAddDeckPlayer;
+export default FormAddPlayerOptions;

@@ -18,8 +18,6 @@ function NewDeck(props) {
       setIsEditing(false);
   }
 
-  console.log(props);
-
   return (
     <div>
       {!isEditing && <button onClick={startEditingHandler}>Deck hinzufügen</button>}

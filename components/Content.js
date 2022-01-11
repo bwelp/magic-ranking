@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Content.css";
 import Players from "./content/Players";
 import Decks from "./content/Decks";
-import FormAddResult from "./forms/NewResult/FormAddResult";
+import Results from "./content/Results";
 import Blank from "./tables/Blank";
 
 function Content(props) {
@@ -34,14 +34,40 @@ function Content(props) {
 
   console.log(playersArray);
 
+  const [decknamesArray, setDecknamesArray] = useState(() => {
+    let savedDecks = localStorage.getItem("decks");
+    if (savedDecks !== null && savedDecks !== []) {
+      let restoredDecknames = [];
+      JSON.parse(savedDecks).forEach((d) => {
+        restoredDecknames.push(d.deckname);
+      });
+      return restoredDecknames;
+    } 
+    else {
+      return [];
+    }
+  });
+  
+  const relayDecknamesHandler = (decks) => {
+    let decknamesArr = [];
+    if (decks.length > 0) {
+      decks.forEach(d => {
+        decknamesArr.push(d.deckname);
+      })
+    }
+    setDecknamesArray(decknamesArr);
+  };
+
+  console.log(playersArray);
+
   const chooseContent = () => {
     switch (props.items) {
       case "addPlayer":
         return <Players onRelayPlayers={relayPlayersHandler}/>;
       case "addDeck":
-        return <Decks items={playersArray}/>;
+        return <Decks items={playersArray} onRelayDecknames={relayDecknamesHandler}/>;
       case "addResult":
-        return <FormAddResult />;
+        return <Results items={decknamesArray} />;
       default:
         return <Blank />;
     }
