@@ -6,7 +6,7 @@ function NewResult(props) {
   const [isEditing, setIsEditing] = useState(false);
 
   function saveResultDataHandler(enteredResultData) {
-    props.onAddDeck(enteredResultData);
+    props.onAddResult(enteredResultData);
     setIsEditing(false);
   };
 
@@ -21,7 +21,7 @@ function NewResult(props) {
   return (
     <div>
       {!isEditing && <button onClick={startEditingHandler}>Ergebnis hinzufügen</button>}
-      {isEditing && <FormAddResult items={props.items} onSaveResultData={saveResultDataHandler} onCancel={stopEditingHandler}/>}
+      {isEditing && <FormAddResult players={props.players} decknames={props.decknames} onSaveResultData={saveResultDataHandler} onCancel={stopEditingHandler}/>}
     </div>
   );
 }

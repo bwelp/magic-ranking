@@ -18,8 +18,6 @@ function Headline(props) {
     }
   };
 
-  console.log(props.items);
-
   return <h1>{addHeadline()}</h1>;
 }
 

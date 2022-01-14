@@ -22,17 +22,24 @@ function Content(props) {
   });
   
   const relayPlayersHandler = (players) => {
-    console.log(players);
-    let playerArr = [];
+    let playersArr = [];
     if (players.length > 0) {
       players.forEach(p => {
-        playerArr.push(p.player);
+        playersArr.push(p.player);
       })
     }
-    setPlayersArray(playerArr);
+    if(playersArr.length === playersArray.length) {
+      for (let i = 0; i < playersArr.length; i++) {
+        if(playersArr[i] !== playersArray[i]) {
+          setPlayersArray(playersArr);
+          break;
+        }
+      }
+    }
+    else {
+      setPlayersArray(playersArr);
+    }
   };
-
-  console.log(playersArray);
 
   const [decknamesArray, setDecknamesArray] = useState(() => {
     let savedDecks = localStorage.getItem("decks");
@@ -55,10 +62,18 @@ function Content(props) {
         decknamesArr.push(d.deckname);
       })
     }
-    setDecknamesArray(decknamesArr);
+    if(decknamesArr.length === decknamesArray.length) {
+      for (let i = 0; i < decknamesArr.length; i++) {
+        if(decknamesArr[i] !== decknamesArray[i]) {
+          setDecknamesArray(decknamesArr);
+          break;
+        }
+      }
+    }
+    else {
+      setDecknamesArray(decknamesArr);
+    }
   };
-
-  console.log(playersArray);
 
   const chooseContent = () => {
     switch (props.items) {
@@ -67,7 +82,7 @@ function Content(props) {
       case "addDeck":
         return <Decks items={playersArray} onRelayDecknames={relayDecknamesHandler}/>;
       case "addResult":
-        return <Results items={decknamesArray} />;
+        return <Results decknames={decknamesArray} players={playersArray} />;
       default:
         return <Blank />;
     }

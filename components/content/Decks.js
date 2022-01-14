@@ -51,7 +51,7 @@ function Decks(props) {
   useEffect(() => {
       saveDecks();
       console.log(decks);
-      props.onRelayDecks(decks);
+      props.onRelayDecknames(decks);
   })
 
   return (

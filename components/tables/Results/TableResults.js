@@ -25,12 +25,13 @@ function TableResults(props) {
           {props.items.map((result) => (
             <ResultItem
               key={result.gameId}
+              gameId={result.gameId}
               players={result.players}
               decks={result.decks}
               gameDate={result.gameDate}
               gameRound={result.gameRound}
               gameLocation={result.gameLocation}
-              onRemoveDeck={removeResultHandler}
+              onRemoveResult={removeResultHandler}
             />
           ))}
         </tbody>

@@ -9,24 +9,6 @@ const FormAddResult = (props) => {
 
   const playerInputRef = useRef([]);
   const deckInputRef = useRef([]);
-  // const player2InputRef = useRef();
-  // const deck2InputRef = useRef();
-  // const player3InputRef = useRef();
-  // const deck3InputRef = useRef();
-  // const player4InputRef = useRef();
-  // const deck4InputRef = useRef();
-  // const player5InputRef = useRef();
-  // const deck5InputRef = useRef();
-  // const player6InputRef = useRef();
-  // const deck6InputRef = useRef();
-  // const player7InputRef = useRef();
-  // const deck7InputRef = useRef();
-  // const player8InputRef = useRef();
-  // const deck8InputRef = useRef();
-  // const player9InputRef = useRef();
-  // const deck9InputRef = useRef();
-  // const player10InputRef = useRef();
-  // const deck10InputRef = useRef();
   const gameRoundInputRef = useRef();
   const gameLocationInputRef = useRef();
   const gameDateInputRef = useRef();
@@ -49,8 +31,16 @@ const FormAddResult = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const enteredPlayers = playerInputRef;
-    const enteredDecks = deckInputRef;
+    let enteredPlayers = [];
+    playerInputRef.current.forEach(player => {
+      enteredPlayers.push(player.value);
+    })
+
+    let enteredDecks = [];
+    deckInputRef.current.forEach(deck => {
+      enteredDecks.push(deck.value);
+    })
+
     const enteredGameRound = gameRoundInputRef.current.value;
     const enteredGameLocation = gameLocationInputRef.current.value;
     const enteredGameDate = gameDateInputRef.current.value;
@@ -66,6 +56,8 @@ const FormAddResult = (props) => {
 
     props.onSaveResultData(result);
 
+    playerInputRef.current = [];
+    deckInputRef.current = [];
     gameRoundInputRef.current.value = '';
     gameLocationInputRef.current.value = '';
     gameDateInputRef.current.value = '';
@@ -98,13 +90,13 @@ const FormAddResult = (props) => {
                 id={`player${number}`}
                 name={`player${number}`}
                 form="add-result"
+                ref={(element) => playerInputRef.current.push(element)}
               >
                 <option value="">Spieler auswählen</option>
-                {props.items.map((player, index) => (
+                {props.players.map((player) => (
                   <FormAddPlayerOptions
                     key={player}
                     player={player}
-                    ref={(element) => (playerInputRef.current[index] = element)}
                   />
                 ))}
               </select>
@@ -112,13 +104,13 @@ const FormAddResult = (props) => {
                 id={`deck${number}`}
                 name={`deck${number}`}
                 form="add-result"
+                ref={(element) => (deckInputRef.current.push(element))}
               >
                 <option value="">Deck auswählen</option>
-                {props.items.map((deckname, index) => (
+                {props.decknames.map((deckname, index) => (
                   <FormAddDeckOptions
                     key={deckname}
                     deckname={deckname}
-                    ref={(element) => (deckInputRef.current[index] = element)}
                   />
                 ))}
               </select>
@@ -156,7 +148,7 @@ const FormAddResult = (props) => {
         />
       </div>
       <div>
-        <button type="submit" form="add-deck">
+        <button type="submit" form="add-result">
           hinzufügen
         </button>
         <button type="button" onClick={props.onCancel}>

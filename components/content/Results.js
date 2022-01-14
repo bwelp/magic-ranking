@@ -31,11 +31,11 @@ function Results(props) {
     });
   };
 
-  function removeResultHandler(result) {
+  function removeResultHandler(gameId) {
     setResults(function(prevResults) {
       let index = -1;
       for (let i = 0; i < prevResults.length; i++) {
-        if (prevResults[i].result === result) {
+        if (prevResults[i].gameId === gameId) {
           index = i;
           break;
         }
@@ -55,7 +55,7 @@ function Results(props) {
 
   return (
     <div>
-      <NewResult onAddDeck={addResultHandler} items={props.items} />
+      <NewResult onAddResult={addResultHandler} players={props.players} decknames={props.decknames} />
       <TableResults items={results} onRemoveResult={removeResultHandler} />
     </div>
   );
