@@ -8,11 +8,11 @@ function Headline(props) {
       case "start":
         return "Bestenliste";
       case "addPlayer":
-        return "Füge einen Spieler hinzu:";
+        return "Spieler:";
       case "addDeck":
-        return "Füge ein Deck hinzu:";
+        return "Decks:";
       case "addResult":
-        return "Füge ein Ergebnis hinzu:";
+        return "Ergebnisse:";
       default:
         return "Fehler! Das hätte nicht passieren sollen!";
     }

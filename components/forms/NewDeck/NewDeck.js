@@ -1,27 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 
+import './NewDeck.css';
 import FormAddDeck from "./FormAddDeck";
 
 function NewDeck(props) {
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
 
   function saveDeckDataHandler(enteredDeckData) {
     props.onAddDeck(enteredDeckData);
-    setIsEditing(false);
+    props.onStopAdding(false);
   };
 
-  function startEditingHandler() {
-      setIsEditing(true);
-  }
+  // function startEditingHandler() {
+  //     setIsEditing(true);
+  // }
 
   function stopEditingHandler() {
-      setIsEditing(false);
+      props.onStopAdding(false);
   }
 
   return (
-    <div>
-      {!isEditing && <button onClick={startEditingHandler}>Deck hinzufügen</button>}
-      {isEditing && <FormAddDeck items={props.items} onSaveDeckData={saveDeckDataHandler} onCancel={stopEditingHandler}/>}
+    <div className="new_deck">
+      {/* {!isEditing && <button id="button_open_deck_form" onClick={startEditingHandler}>Deck hinzufügen</button>} */}
+      {props.addDeckActive && <FormAddDeck items={props.items} onSaveDeckData={saveDeckDataHandler} onCancel={stopEditingHandler}/>}
     </div>
   );
 }

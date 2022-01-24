@@ -1,0 +1,30 @@
+.new_deck{
+    margin: 0;
+
+    /* width: 50%; */
+    /* background-color: blue; */
+    /* margin: 10px; */
+    /* border: 50px black; */
+    /* flex-basis: 40%; */
+}
+
+#button_open_deck_form {
+    margin: 10px;
+}
+
+/* .new_deck button {
+    font: inherit;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid rgb(228, 93, 59);
+    background-color: rgb(228, 93, 59);
+    color: white;
+    border-radius: 5px;
+    margin-right: 6px;
+}
+
+.new_deck button:hover,
+.new_deck button:active {
+    background-color: rgb(226, 111, 82);
+    border-color: rgb(226, 111, 82);
+} */

@@ -1,6 +1,67 @@
 .img-color {
     width: 16px;
     height: auto;
-    /* width: 100%; 
-    height: auto;  */
+}
+
+.form_add_deck {
+    margin: 10px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.form_add_deck input {
+    margin-bottom: 2px;
+    margin-right: 6px;
+}
+
+.form_add_deck input[type=text]:focus {
+    background-color: lightblue;
+  }
+
+.form_add_deck input[type=checkbox]{
+    display: none;
+}
+
+.form_add_deck input[type=checkbox] + label img{
+    cursor: pointer;
+    width: 20px;
+    height: auto;
+    margin-left: 5px;
+}
+
+.form_add_deck input[type=checkbox]:checked + label img{
+    width: 28px;
+    height: auto;
+}
+
+#add_deck__deckname,
+#add_deck__colors,
+#add_deck__commander,
+#add_deck__player {
+    margin: 10px;
+}
+
+#add_deck__player {
+    margin-bottom: 20px;
+}
+
+.form_add_deck button {
+    cursor: pointer;
+    padding: 2px 5px 2px 5px;
+    border: 1px solid rgb(228, 93, 59);
+    background-color: rgb(228, 93, 59);
+    color: white;
+    border-radius: 3px;
+    margin-right: 6px;
+}
+
+.form_add_deck button:hover,
+.form_add_deck button:active {
+    background-color: rgb(226, 111, 82);
+    border-color: rgb(226, 111, 82);
+}
+
+#deckname {
+    margin-left: 55px;
 }

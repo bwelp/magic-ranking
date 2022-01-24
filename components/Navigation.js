@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './Navigation.css';
 
-import ranking from '../img/icon_back_white.png';
+import ranking from '../img/cup.png';
 import addPlayer from '../img/icon_playerPlus_white.png';
 import addDeck from '../img/icon_deckPlus_white.png';
 import addResult from '../img/icon_resultPlus_white.png';

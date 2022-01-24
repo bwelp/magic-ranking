@@ -4,7 +4,7 @@ import "./Content.css";
 import Players from "./content/Players";
 import Decks from "./content/Decks";
 import Results from "./content/Results";
-import Blank from "./tables/Blank";
+import Ranking from "./content/Ranking";
 
 function Content(props) {
   const [playersArray, setPlayersArray] = useState(() => {
@@ -84,7 +84,7 @@ function Content(props) {
       case "addResult":
         return <Results decknames={decknamesArray} players={playersArray} />;
       default:
-        return <Blank />;
+        return <Ranking />;
     }
   };
 

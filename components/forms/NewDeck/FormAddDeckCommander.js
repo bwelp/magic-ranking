@@ -11,8 +11,16 @@ const FormAddCommander = (props) => {
     props.onsaveSecondCommander(event.target.value);
   };
 
-  const checkboxChangeHandler = (event) => {
-    props.onCheckSecondCommander(event.target.checked);
+  // const checkboxChangeHandler = (event) => {
+  //   props.onCheckSecondCommander(event.target.checked);
+  // };
+
+  const commanderMinusHandler = (event) => {
+    props.onCheckSecondCommander(false);
+  };
+
+  const commanderPlusHandler = (event) => {
+    props.onCheckSecondCommander(true);
   };
 
   const addSecondCommander = () => {
@@ -28,10 +36,29 @@ const FormAddCommander = (props) => {
             onChange={secondCommanderChangeHandler}
             form="add-deck"
           />
+          <button
+            type="button"
+            id="commanderMinus"
+            onClick={commanderMinusHandler}
+          >
+            X
+          </button>
         </div>
       );
     }
   };
+
+  // <div>
+  //       <label htmlFor="secondCommanderCheck">2. Commander hinzufügen? </label>
+  //       <input
+  //         type="checkbox"
+  //         id="secondCommandercheck"
+  //         onChange={checkboxChangeHandler}
+  //         form="add-deck"
+  //         checked={props.secondCommanderCheck}
+  //       />
+  //       {addSecondCommander()}
+  //     </div>
   
   return (
     <div>
@@ -45,16 +72,16 @@ const FormAddCommander = (props) => {
           form="add-deck"
           value={props.commander}
         />
+        {!props.secondCommanderCheck && <button
+          type="button"
+          id="CommanderPlus"
+          form="add-deck"
+          onClick={commanderPlusHandler}
+        >
+          +
+        </button>}
       </div>
       <div>
-        <label htmlFor="secondCommanderCheck">2. Commander hinzufügen? </label>
-        <input
-          type="checkbox"
-          id="secondCommandercheck"
-          onChange={checkboxChangeHandler}
-          form="add-deck"
-          checked={props.secondCommanderCheck}
-        />
         {addSecondCommander()}
       </div>
     </div>

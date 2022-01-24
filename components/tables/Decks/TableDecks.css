@@ -1,0 +1,8 @@
+.table_decks {
+    width: 50%;
+    margin: 10px;
+    /* flex-basis: 60%; */
+    margin-right: 50px;
+    /* background-color: blue; */
+    /* border: 10px solid black; */
+}

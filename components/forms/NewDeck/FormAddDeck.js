@@ -31,7 +31,7 @@ const FormAddDeck = (props) => {
   const saveCommanderHandler = (commanderName) => {
     setCommander(commanderName);
   };
-
+  
   const checkSecondCommanderHandler = (hasSecondCommander) => {
     setSecondCommanderCheck(hasSecondCommander);
   };
@@ -101,11 +101,10 @@ const FormAddDeck = (props) => {
   };
 
   return (
-    <div>
-      <div id="table"></div>
+    <div className="form_add_deck">
       <form type="submit" id="add-deck" onSubmit={submitHandler}>
-        <div>
-          <label htmlFor="deckname">Name des Decks </label>
+        <div id="add_deck__deckname">
+          <label htmlFor="deckname">Deck </label>
           <input
             type="text"
             id="deckname"
@@ -115,7 +114,8 @@ const FormAddDeck = (props) => {
             onChange={decknameChangeHandler}
           />
         </div>
-        <div>
+
+        <div id="add_deck__commander">
           <FormAddDeckCommander
             onSaveCommander={saveCommanderHandler}
             onCheckSecondCommander={checkSecondCommanderHandler}
@@ -126,8 +126,86 @@ const FormAddDeck = (props) => {
           />
         </div>
 
-        <div>
-          <label htmlFor="player">Name des Spielers </label>
+        <div id="add_deck__colors">
+          <input
+            type="checkbox"
+            id="checkbox_white"
+            form="add-deck"
+            name="colors"
+            value="white"
+            onChange={colorWhiteChangeHandler}
+            checked={colorWhite}
+          />
+          <label htmlFor="checkbox_white">
+            <img src={white} alt="weiss" className="img-color" />
+          </label>
+          <input
+            type="checkbox"
+            id="checkbox_blue"
+            form="add-deck"
+            name="colors"
+            value="blue"
+            onChange={colorBlueChangeHandler}
+            checked={colorBlue}
+          />
+          <label htmlFor="checkbox_blue">
+            <img src={blue} alt="blau" className="img-color" />
+          </label>
+          <input
+            type="checkbox"
+            id="checkbox_black"
+            form="add-deck"
+            name="colors"
+            value="black"
+            onChange={colorBlackChangeHandler}
+            checked={colorBlack}
+          />
+          <label htmlFor="checkbox_black">
+            <img src={black} alt="schwarz" className="img-color" />
+          </label>
+          <input
+            type="checkbox"
+            id="checkbox_red"
+            form="add-deck"
+            name="colors"
+            value="red"
+            onChange={colorRedChangeHandler}
+            checked={colorRed}
+          />
+          <label htmlFor="checkbox_red">
+            <img src={red} alt="rot" className="img-color" />
+          </label>
+          <input
+            type="checkbox"
+            id="checkbox_green"
+            form="add-deck"
+            name="colors"
+            value="green"
+            onChange={colorGreenChangeHandler}
+            checked={colorGreen}
+          />
+          <label htmlFor="checkbox_green">
+            <img src={green} alt="gruen" className="img-color" />
+          </label>
+          <input
+            type="checkbox"
+            id="checkbox_colorless"
+            form="add-deck"
+            name="colors"
+            value="colorless"
+            onChange={colorlessChangeHandler}
+            checked={colorless}
+          />
+          <label htmlFor="checkbox_colorless">
+            <img src={colorlessImg} alt="farblos" className="img-color" />
+          </label>
+        </div>
+        
+        
+        
+
+        <div id="add_deck__player">
+          <label htmlFor="player">Spieler </label>
           <select
             id="player"
             name="player"
@@ -136,76 +214,12 @@ const FormAddDeck = (props) => {
             onChange={playerDropdownChangeHandler}
           >
             <option value="">Spieler auswählen</option>
-            {props.items.map(player => (
+            {props.items.map((player) => (
               <FormAddPlayerOptions key={player} player={player} />
             ))}
-
           </select>
         </div>
-        <div>
-          <label htmlFor="colors">Farben </label>
-          <br />
-          <input
-            type="checkbox"
-            id="white"
-            form="add-deck"
-            name="colors"
-            value="white"
-            onChange={colorWhiteChangeHandler}
-            checked={colorWhite}
-          />
-          <img src={white} alt="weiss" className="img-color" />
-          <input
-            type="checkbox"
-            id="blue"
-            form="add-deck"
-            name="colors"
-            value="blue"
-            onChange={colorBlueChangeHandler}
-            checked={colorBlue}
-          />
-          <img src={blue} alt="blau" className="img-color" />
-          <input
-            type="checkbox"
-            id="black"
-            form="add-deck"
-            name="colors"
-            value="black"
-            onChange={colorBlackChangeHandler}
-            checked={colorBlack}
-          />
-          <img src={black} alt="schwarz" className="img-color" />
-          <input
-            type="checkbox"
-            id="red"
-            form="add-deck"
-            name="colors"
-            value="red"
-            onChange={colorRedChangeHandler}
-            checked={colorRed}
-          />
-          <img src={red} alt="rot" className="img-color" />
-          <input
-            type="checkbox"
-            id="green"
-            form="add-deck"
-            name="colors"
-            value="green"
-            onChange={colorGreenChangeHandler}
-            checked={colorGreen}
-          />
-          <img src={green} alt="gruen" className="img-color" />
-          <input
-            type="checkbox"
-            id="colorless"
-            form="add-deck"
-            name="colors"
-            value="colorless"
-            onChange={colorlessChangeHandler}
-            checked={colorless}
-          />
-          <img src={colorlessImg} alt="farblos" className="img-color" />
-        </div>
+
         <div>
           <button type="submit" form="add-deck">
             Deck hinzufügen

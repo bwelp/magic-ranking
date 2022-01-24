@@ -10,7 +10,7 @@ function TableDecks(props) {
   };
 
   return (
-    <div>
+    <div className="table_decks">
       <table id="decklist">
         <thead>
           <tr>
