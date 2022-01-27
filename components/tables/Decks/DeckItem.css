@@ -1,0 +1,36 @@
+.deck_item {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin: 5px;
+    width: 700px;
+    max-width: 100%;
+    min-width: 90%;
+    padding: 5px;
+} 
+
+.deck_item:hover,
+.deck_item:active {
+    cursor: pointer;
+    /* background-color: rgb(240, 240, 240); */
+    opacity: 0.8;
+}
+
+.deck_item__img {
+    width: 16px;
+    margin-right: 5px;
+}
+
+.deck_item__deckname,
+.deck_item__commander {
+    width: 200px;
+    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+}
+
+.deck_item__remove_button:hover,
+.deck_item__remove_button:active {
+    opacity: 0.8;
+    cursor: pointer;
+}

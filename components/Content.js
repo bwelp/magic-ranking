@@ -75,14 +75,43 @@ function Content(props) {
     }
   };
 
+  const restoreDecks = () => {
+    let savedDecks = localStorage.getItem("decks");
+    if (savedDecks !== null && savedDecks !== []) {
+      let restoredDecks = [];
+      JSON.parse(savedDecks).forEach((deck) => {
+        restoredDecks.push(deck);
+      });
+      return restoredDecks;
+    } else {
+      return [];
+    }
+  };
+
+  const [decks, setDecks] = useState(() => {
+    return restoreDecks();
+  });
+
+
+
+
+  // const [results, setResults] = useState([]);
+
+  // const forwardResultsHandler = (forwardedResults) => {
+  //   setResults(forwardedResults);
+  //   console.log(forwardedResults);
+  // };
+
+  // console.log(results);
+
   const chooseContent = () => {
     switch (props.items) {
       case "addPlayer":
         return <Players onRelayPlayers={relayPlayersHandler}/>;
       case "addDeck":
-        return <Decks items={playersArray} onRelayDecknames={relayDecknamesHandler}/>;
+        return <Decks players={playersArray} onRelayDecknames={relayDecknamesHandler} results={results}/>;
       case "addResult":
-        return <Results decknames={decknamesArray} players={playersArray} />;
+        return <Results decknames={decknamesArray} players={playersArray} onForwardResults={forwardResultsHandler} />;
       default:
         return <Ranking />;
     }

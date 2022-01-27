@@ -12,3 +12,8 @@
     border: 8px solid rgb(228, 93, 59);
     margin-bottom: 30px;
 }
+
+#navigation > img:hover {
+    cursor: pointer;
+    border: 5px solid rgb(228, 93, 59);
+}

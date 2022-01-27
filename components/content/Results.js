@@ -29,6 +29,7 @@ function Results(props) {
     setResults(prevResults => {
         return [...prevResults, enteredResultData]
     });
+    props.onForwardResults(results);
   };
 
   function removeResultHandler(gameId) {
@@ -46,12 +47,18 @@ function Results(props) {
       }
       return [...prevResults];
     });
+    props.onForwardResults(results);
   };
 
   useEffect(() => {
       saveResults();
-      console.log(results);
-  })
+      console.log("UseEffect Save Results");
+  });
+
+  useEffect(() => {
+    props.onForwardResults(results);
+    console.log("UseEffect Forward Results");
+  });
 
   return (
     <div>

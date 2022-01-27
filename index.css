@@ -1,5 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
+@font-face {
+  font-family: "Matrix Bold";
+  src: local("Matrix Bold"),
+      url("./fonts/Matrix-bold/Matrix-bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Amatic SC";
+  src: local("Amatic SC Regular"), local("AmaticSC-Regular"),
+      url(./fonts/amatic-sc/amatic-sc-v13-latin-regular.woff) format("woff"),
+      url(./fonts/amatic-sc/amatic-sc-v13-latin-regular.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Beleren Bold";
+  src: url("./fonts/Beleren-bold/Beleren-Bold.ttf") format("truetype");
+}
+
+/* @font-face {
+  font-family: "MPlantin";
+  src: url("./fonts/MPlantin/MPlantin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MPlantin Bold";
+  src: url("./fonts/MPlantin/MPlantin-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MPlantin Italic";
+  src: url("./fonts/MPlantin/MPlantin-Italic.ttf") format("truetype");
+} */
+
+
+
+/* url("./fonts/MPlantin/MPlantin-Bold.ttf") format("truetype"),
+      url("./fonts/MPlantin/MPlantin-Italic.ttf") format("truetype"); */
+
 * {
   box-sizing: border-box;
 }

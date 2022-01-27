@@ -1,8 +1,12 @@
 .table_decks {
-    width: 50%;
+    width: 600px;
+    max-width: 60%;
+    min-width: 40%;
     margin: 10px;
     /* flex-basis: 60%; */
     margin-right: 50px;
     /* background-color: blue; */
     /* border: 10px solid black; */
+    /* height: 100%;
+    overflow-y: scroll; */
 }

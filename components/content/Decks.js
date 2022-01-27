@@ -4,9 +4,12 @@ import './Decks.css';
 
 import NewDeck from "../forms/NewDeck/NewDeck";
 import TableDecks from "../tables/Decks/TableDecks";
+import DeckStatistics from "../tables/Decks/DeckStatistics";
 
 function Decks(props) {
   const [addDeckBoxActive, setAddDeckBoxActive] = useState(false);
+  const [activeDeck, setActiveDeck] = useState("");
+  const [deckData, setDeckData] = useState({});
 
   const restoreDecks = () => {
     let savedDecks = localStorage.getItem("decks");
@@ -27,6 +30,27 @@ function Decks(props) {
 
   const saveDecks = () => {
     localStorage.setItem("decks", JSON.stringify(decks));
+  };
+
+  const createDeckStatistic = (deckname) => {
+    let deckStatistic = {};
+    return deckStatistic;
+  };
+
+  console.log(props.results);
+
+  const openDeckStatisticHandler = (deckname) => {
+    if(deckname !== activeDeck){
+    setActiveDeck(deckname);}
+    else {
+      setActiveDeck("");
+    }
+    if(deckname !== "") {
+      setAddDeckBoxActive(false);
+      setDeckData(decks.filter(deck => deck.deckname === deckname)[0]);
+    }
+    console.log(deckData);
+    setDeckData(...deckData, createDeckStatistic(deckname));
   };
 
   function addDeckHandler(enteredDeckData) {
@@ -53,12 +77,15 @@ function Decks(props) {
   }
 
   const deckPlusButtonClickHandler = (event) => {
+    setActiveDeck("");
     setAddDeckBoxActive(true);
   };
 
   const stopAddingDeckHandler = () => {
     setAddDeckBoxActive(false);
   };
+
+ 
 
   useEffect(() => {
     saveDecks();
@@ -80,13 +107,19 @@ function Decks(props) {
         )}
       </div>
       <div id="deck_container">
-        <TableDecks items={decks} onRemoveDeck={removeDeckHandler} />
+        <TableDecks
+          decks={decks}
+          players={props.players}
+          onRemoveDeck={removeDeckHandler}
+          onOpenDeckStatistic={openDeckStatisticHandler}
+        />
         <NewDeck
           onAddDeck={addDeckHandler}
-          items={props.items}
+          players={props.players}
           addDeckActive={addDeckBoxActive}
           onStopAdding={stopAddingDeckHandler}
         />
+        {activeDeck !== "" && <DeckStatistics deck={deckData} activeDeck={activeDeck} />}
       </div>
     </div>
   );

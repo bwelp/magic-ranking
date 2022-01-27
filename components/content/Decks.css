@@ -6,15 +6,18 @@
     margin-left: 10px;
 }
 
+.headline {
+    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+    font-size: 24pt;
+    /* font-size: 16pt;
+    font-weight: bold; */
+}
+
 #deck_container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-}
-
-.headline {
-    font-size: 16pt;
-    font-weight: bold;
+    margin: 10px;
 }
 
 #deck_plus_button {
@@ -31,6 +34,7 @@
 
 #deck_plus_button:hover,
 #deck_plus_button:active {
-    background-color: rgb(226, 111, 82);
-    border-color: rgb(226, 111, 82);
+    background-color: rgb(226, 143, 122);
+    border-color: rgb(226, 143, 122);
+    cursor: pointer;
 } 
