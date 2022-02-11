@@ -4,7 +4,6 @@ import PlayerItem from "./PlayerItem";
 import "./TablePlayers.css";
 
 function TablePlayers(props) {
-    console.log(props);
 
     const removePlayerHandler = (player) => {
       props.onRemovePlayer(player);
@@ -12,11 +11,11 @@ function TablePlayers(props) {
     
 
   return (
-    <ul>
-      {props.items.map((player) => (
+    <div id="table_players__container">
+      {props.players.map((player) => (
         <PlayerItem key={player.player} player={player.player} onRemovePlayer={removePlayerHandler} />
       ))}
-    </ul>
+    </div>
   );
 }
 

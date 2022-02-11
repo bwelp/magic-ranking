@@ -1,0 +1,50 @@
+#ranking-headrow {
+    font-family: "Matrix Bold", Helvetica, sans-serif;
+    font-size: 28px;
+}
+
+#ranking-container {
+    padding: 10px;
+    margin: 10px;
+    margin-top: 20px;
+}
+
+table, #ranking-headrow {
+    border: 3px solid rgb(228, 93, 59);
+    border-collapse: collapse;
+    width: auto;
+    /* text-align: left; */
+    /*background-color:rgb(214, 206, 205);*/
+}
+
+th {
+    height: 50px;
+    padding: 20px;
+}
+
+tr {
+    height: 30px;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tr td:nth-child(3),
+tr td:nth-child(4) { 
+    text-align: right;
+}
+
+tr td:nth-child(1) { 
+    text-align: center;
+}
+
+td {
+    padding: 20px;
+    font-size: 20px;
+  }
+
+.star {
+    height: 30px;
+    width: auto;
+}

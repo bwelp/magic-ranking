@@ -1,0 +1,33 @@
+.result_item {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin: 5px;
+    width: 680px;
+    max-width: 100%;
+    min-width: 90%;
+    padding: 5px;
+    font-size: 20px;
+} 
+
+.result_item:hover,
+.result_item:active {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.result_item__round {
+    width: 200px;
+}
+
+.result_item__list {
+    width: 400px;
+}
+
+.result_item__remove_button:hover,
+.result_item__remove_button:active {
+    opacity: 0.8;
+    cursor: pointer;
+}

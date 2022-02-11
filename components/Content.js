@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./Content.css";
 import Players from "./content/Players";
@@ -7,111 +7,155 @@ import Results from "./content/Results";
 import Ranking from "./content/Ranking";
 
 function Content(props) {
-  const [playersArray, setPlayersArray] = useState(() => {
-    let savedPlayers = localStorage.getItem("players");
-    if (savedPlayers !== null && savedPlayers !== []) {
-      let restoredPlayers = [];
-      JSON.parse(savedPlayers).forEach((p) => {
-        restoredPlayers.push(p.player);
+  const restoreItems = (localStorageItem) => {
+    let savedItems = localStorage.getItem(localStorageItem);
+    if (savedItems !== null && savedItems !== []) {
+      let restoredItems = [];
+      JSON.parse(savedItems).forEach((item) => {
+        restoredItems.push(item);
       });
-      return restoredPlayers;
+      return restoredItems;
     } 
     else {
       return [];
     }
+  };
+
+  const [players, setPlayers] = useState(() => {
+    return restoreItems("players");
   });
-  
-  const relayPlayersHandler = (players) => {
-    let playersArr = [];
-    if (players.length > 0) {
-      players.forEach(p => {
-        playersArr.push(p.player);
-      })
-    }
-    if(playersArr.length === playersArray.length) {
-      for (let i = 0; i < playersArr.length; i++) {
-        if(playersArr[i] !== playersArray[i]) {
-          setPlayersArray(playersArr);
-          break;
-        }
-      }
-    }
-    else {
-      setPlayersArray(playersArr);
-    }
-  };
-
-  const [decknamesArray, setDecknamesArray] = useState(() => {
-    let savedDecks = localStorage.getItem("decks");
-    if (savedDecks !== null && savedDecks !== []) {
-      let restoredDecknames = [];
-      JSON.parse(savedDecks).forEach((d) => {
-        restoredDecknames.push(d.deckname);
-      });
-      return restoredDecknames;
-    } 
-    else {
-      return [];
-    }
-  });
-  
-  const relayDecknamesHandler = (decks) => {
-    let decknamesArr = [];
-    if (decks.length > 0) {
-      decks.forEach(d => {
-        decknamesArr.push(d.deckname);
-      })
-    }
-    if(decknamesArr.length === decknamesArray.length) {
-      for (let i = 0; i < decknamesArr.length; i++) {
-        if(decknamesArr[i] !== decknamesArray[i]) {
-          setDecknamesArray(decknamesArr);
-          break;
-        }
-      }
-    }
-    else {
-      setDecknamesArray(decknamesArr);
-    }
-  };
-
-  const restoreDecks = () => {
-    let savedDecks = localStorage.getItem("decks");
-    if (savedDecks !== null && savedDecks !== []) {
-      let restoredDecks = [];
-      JSON.parse(savedDecks).forEach((deck) => {
-        restoredDecks.push(deck);
-      });
-      return restoredDecks;
-    } else {
-      return [];
-    }
-  };
-
   const [decks, setDecks] = useState(() => {
-    return restoreDecks();
+    return restoreItems("decks");
+  });
+  const [results, setResults] = useState(() => {
+    return restoreItems("results");
   });
 
+  // Players
+
+  function addPlayerHandler(player) {
+    setPlayers(function(prevPlayers) {
+      return [...prevPlayers, player].sort((a, b) => {
+        if (a.player < b.player) {
+          return -1;
+        }
+        if (a.player > b.player) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    });
+  };
+
+  function removePlayerHandler(playerName) {
+    console.log(players);
+    setPlayers(function(prevPlayers) {
+      console.log(prevPlayers);
+      let index = -1;
+      for (let i = 0; i < prevPlayers.length; i++) {
+        if (prevPlayers[i].player === playerName) {
+          index = i;
+          break;
+        }
+      }
+      if (index !== -1) {
+        prevPlayers.splice(index, 1);
+      }
+      return [...prevPlayers];
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("players", JSON.stringify(players));
+  }, [players]);
+
+  
+  // Decks
+
+  function addDeckHandler(enteredDeckData) {
+    setDecks((prevDecks) => {
+      return [...prevDecks, enteredDeckData].sort((a, b) => {
+        if (a.deckname < b.deckname) {
+          return -1;
+        }
+        if (a.deckname > b.deckname) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    });
+  };
+
+  function removeDeckHandler(deckname) {
+    setDecks(function (prevDecks) {
+      let index = -1;
+      for (let i = 0; i < prevDecks.length; i++) {
+        if (prevDecks[i].deckname === deckname) {
+          index = i;
+          break;
+        }
+      }
+      if (index !== -1) {
+        prevDecks.splice(index, 1);
+      }
+      return [...prevDecks];
+    });
+  }
+
+  useEffect(() => {
+    localStorage.setItem("decks", JSON.stringify(decks));
+  }, [decks]);
 
 
+  // Results
 
-  // const [results, setResults] = useState([]);
+  function addResultHandler(enteredResultData) {
+    setResults(prevResults => {
+      return [...prevResults, enteredResultData].sort((a, b) => {
+        if (a.gameId < b.gameId) {
+          return -1;
+        }
+        if (a.gameId > b.gameId) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    });
+  };
 
-  // const forwardResultsHandler = (forwardedResults) => {
-  //   setResults(forwardedResults);
-  //   console.log(forwardedResults);
-  // };
+  function removeResultHandler(gameId) {
+    setResults(function(prevResults) {
+      let index = -1;
+      for (let i = 0; i < prevResults.length; i++) {
+        if (prevResults[i].gameId === gameId) {
+          index = i;
+          break;
+        }
+      }
 
-  // console.log(results);
+      if (index !== -1) {
+        prevResults.splice(index, 1);
+      }
+      return [...prevResults];
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("results", JSON.stringify(results));
+  }, [results]);
+
 
   const chooseContent = () => {
     switch (props.items) {
       case "addPlayer":
-        return <Players onRelayPlayers={relayPlayersHandler}/>;
+        return <Players players={players} onAddPlayer={addPlayerHandler} onRemovePlayer={removePlayerHandler}/>;
       case "addDeck":
-        return <Decks players={playersArray} onRelayDecknames={relayDecknamesHandler} results={results}/>;
+        return <Decks players={players} decks={decks} results={results} onAddDeck={addDeckHandler} onRemoveDeck={removeDeckHandler} />;
       case "addResult":
-        return <Results decknames={decknamesArray} players={playersArray} onForwardResults={forwardResultsHandler} />;
+        return <Results results={results} decks={decks} players={players} onAddResult={addResultHandler} onRemoveResult={removeResultHandler} />;
       default:
         return <Ranking />;
     }

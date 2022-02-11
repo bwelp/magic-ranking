@@ -1,4 +1,4 @@
-.img-color {
+.form_add_deck .img-color {
     width: 16px;
     height: auto;
 }
@@ -64,6 +64,30 @@
     border-color: rgb(226, 111, 82);
 }
 
+.form_add_deck button:disabled,
+.form_add_deck button:disabled:hover,
+.form_add_deck button:disabled:active {
+  background-color:#ccc;
+  color: #292929;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
 #deckname {
     margin-left: 55px;
 }
+
+.invalid input {
+    border: 1px solid #b40e0e;
+    background-color: #fddddd;
+  }
+  
+.invalid input:focus {
+    border-color: #ff8800;
+    background-color: #fbe8d2;
+  }
+
+.error-text {
+    color: #b40e0e;
+    margin-left: 10px;
+  }

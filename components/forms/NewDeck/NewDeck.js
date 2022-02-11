@@ -22,7 +22,7 @@ function NewDeck(props) {
   return (
     <div className="new_deck">
       {/* {!isEditing && <button id="button_open_deck_form" onClick={startEditingHandler}>Deck hinzufügen</button>} */}
-      {props.addDeckActive && <FormAddDeck items={props.players} onSaveDeckData={saveDeckDataHandler} onCancel={stopEditingHandler}/>}
+      {props.addDeckActive && <FormAddDeck players={props.players} decks={props.decks} onSaveDeckData={saveDeckDataHandler} onCancel={stopEditingHandler}/>}
     </div>
   );
 }

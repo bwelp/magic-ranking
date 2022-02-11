@@ -1,0 +1,68 @@
+.form_add_result {
+    margin: 10px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.form_add_result input {
+    margin-bottom: 2px;
+    margin-right: 6px;
+}
+
+.form_add_result input[type=text]:focus {
+    background-color: lightblue;
+  }
+
+#add_result__number_of_players,  
+#add_result__players_decks,
+#add_result__game_round,
+#add_result__game_location,
+#add_result__game_date {
+    margin: 10px;
+}
+
+.form_add_result button {
+    cursor: pointer;
+    padding: 2px 5px 2px 5px;
+    border: 1px solid rgb(228, 93, 59);
+    background-color: rgb(228, 93, 59);
+    color: white;
+    border-radius: 3px;
+    margin-right: 6px;
+}
+
+.form_add_result button:hover,
+.form_add_result button:active {
+    background-color: rgb(226, 111, 82);
+    border-color: rgb(226, 111, 82);
+}
+
+.form_add_result button:disabled,
+.form_add_result button:disabled:hover,
+.form_add_result button:disabled:active {
+  background-color:#ccc;
+  color: #292929;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.form_add_result select {
+    margin: 5px;
+}
+
+.invalid input {
+    border: 1px solid #b40e0e;
+    background-color: #fddddd;
+  }
+  
+.invalid input:focus {
+    border-color: #ff8800;
+    background-color: #fbe8d2;
+  }
+
+.error-text {
+    color: #b40e0e;
+    margin-left: 10px;
+  }
+

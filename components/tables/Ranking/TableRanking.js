@@ -3,6 +3,8 @@ import React from "react";
 import "./TableRanking.css";
 import RankItem from './RankItem';
 
+
+
 const TableRanking = () => {
   function rankPlayers() {
     let numberOfWins = [];
@@ -65,10 +67,10 @@ const TableRanking = () => {
   console.log(rankPlayers());
 
   return (
-    <div>
+    <div id="ranking-container">
       <table id="ranking-table">
         <thead>
-          <tr>
+          <tr id="ranking-headrow">
             <th>Platz</th>
             <th>Spieler</th>
             <th>Siege</th>

@@ -3,7 +3,7 @@
     border: 2px solid lightgray;
     border-radius: 10px;
     padding: 20px;
-    height: 300px;
+    height: 420px;
 }
 
 #active_deck__data {
@@ -20,7 +20,7 @@
 } 
 
 .active_deck__img {
-    width: 16px;
+    width: 20px;
     margin-right: 5px;
 }
 
@@ -28,4 +28,5 @@
 .active_deck__commander {
     width: 200px;
     font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+    font-size: 20px;
 }

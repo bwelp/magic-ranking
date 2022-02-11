@@ -13,14 +13,14 @@
     font-weight: bold; */
 }
 
-#deck_container {
+#player_container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin: 10px;
 }
 
-#deck_plus_button {
+#player_plus_button {
     font-size: 18px;
     font-size: bold;
     cursor: pointer;
@@ -32,8 +32,8 @@
     margin-left: 10px;
 }
 
-#deck_plus_button:hover,
-#deck_plus_button:active {
+#player_plus_button:hover,
+#player_plus_button:active {
     background-color: rgb(226, 143, 122);
     border-color: rgb(226, 143, 122);
     cursor: pointer;

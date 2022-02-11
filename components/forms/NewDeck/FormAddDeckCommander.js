@@ -3,37 +3,38 @@ import React from "react";
 import "./FormAddDeckCommander.css";
 
 const FormAddCommander = (props) => {
-  const commanderChangeHandler = (event) => {
-    props.onSaveCommander(event.target.value);
-  };
+  // const commanderChangeHandler = (event) => {
+  //   props.onSaveCommander(event.target.value);
+  // };
 
-  const secondCommanderChangeHandler = (event) => {
-    props.onsaveSecondCommander(event.target.value);
-  };
+  // const secondCommanderChangeHandler = (event) => {
+  //   props.onsaveSecondCommander(event.target.value);
+  // };
 
   // const checkboxChangeHandler = (event) => {
   //   props.onCheckSecondCommander(event.target.checked);
   // };
 
   const commanderMinusHandler = (event) => {
-    props.onCheckSecondCommander(false);
+    props.onChangeSecondCommanderCheck(false);
   };
 
   const commanderPlusHandler = (event) => {
-    props.onCheckSecondCommander(true);
+    props.onChangeSecondCommanderCheck(true);
   };
 
   const addSecondCommander = () => {
     if (props.secondCommanderCheck === true) {
       return (
-        <div>
+        <div className={props.secondCommanderInputClasses}>
           <label htmlFor="secondCommander">2. Commander </label>
           <input
             type="text"
             id="secondCommander"
             name="secondCommander"
             value={props.secondCommander}
-            onChange={secondCommanderChangeHandler}
+            onChange={props.onChangeSecondCommander}
+            onBlur={props.onBlurSecondCommander}
             form="add-deck"
           />
           <button
@@ -43,6 +44,8 @@ const FormAddCommander = (props) => {
           >
             X
           </button>
+          {props.secondCommanderHasError &&
+          <p className="error-text">Bitte eine gültigen Commander eingeben!</p>}
         </div>
       );
     }
@@ -62,13 +65,14 @@ const FormAddCommander = (props) => {
   
   return (
     <div>
-      <div>
+      <div className={props.commanderInputClasses}>
         <label htmlFor="commander">Commander </label>
         <input
           type="text"
           id="commander"
           name="commander"
-          onChange={commanderChangeHandler}
+          onChange={props.onChangeCommander}
+          onBlur={props.onBlurCommander}
           form="add-deck"
           value={props.commander}
         />
@@ -80,10 +84,10 @@ const FormAddCommander = (props) => {
         >
           +
         </button>}
+        {props.commanderHasError &&
+          <p className="error-text">Bitte eine gültigen Commander eingeben!</p>}
       </div>
-      <div>
-        {addSecondCommander()}
-      </div>
+      {addSecondCommander()}
     </div>
   );
 };

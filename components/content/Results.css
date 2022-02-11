@@ -1,26 +1,11 @@
-.headline_container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 20px 20px 30px 20px;
-}
-
-.headline {
-    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
-    font-size: 28pt;
-    /* font-size: 16pt;
-    font-weight: bold; */
-}
-
-#deck_container {
+#result_container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin: 10px;
 }
 
-#deck_plus_button {
+#result_plus_button {
     font-size: 18px;
     font-size: bold;
     cursor: pointer;
@@ -32,8 +17,8 @@
     margin-left: 10px;
 }
 
-#deck_plus_button:hover,
-#deck_plus_button:active {
+#result_plus_button:hover,
+#result_plus_button:active {
     background-color: rgb(226, 143, 122);
     border-color: rgb(226, 143, 122);
     cursor: pointer;

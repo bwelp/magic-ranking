@@ -48,10 +48,10 @@ function TableDecks(props) {
   return (
     <div id="table_decks">
       {props.players.map((player) => (
-        <div key={player}>
-          <div className="table_decks__players">{player}</div>
+        <div key={player.player}>
+          <div className="table_decks__players">{player.player}</div>
           <div className="table_decks__decks">
-            {props.decks.filter(deck => deck.player === player).map((deck) => (
+            {props.decks.filter(deck => deck.player === player.player).map((deck) => (
               <DeckItem
                 key={deck.deckname}
                 deckname={deck.deckname}

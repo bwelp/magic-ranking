@@ -1,27 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 
 import FormAddResult from "./FormAddResult";
 
-function NewResult(props) {
-  const [isEditing, setIsEditing] = useState(false);
-
-  function saveResultDataHandler(enteredResultData) {
+const NewResult = (props) => {
+ 
+  const saveResultDataHandler = (enteredResultData) => {
     props.onAddResult(enteredResultData);
-    setIsEditing(false);
+    props.onStopAdding(false);
   };
 
-  function startEditingHandler() {
-      setIsEditing(true);
-  }
 
-  function stopEditingHandler() {
-      setIsEditing(false);
+  const stopEditingHandler = () => {
+    props.onStopAdding(false);
   }
 
   return (
-    <div>
-      {!isEditing && <button onClick={startEditingHandler}>Ergebnis hinzufügen</button>}
-      {isEditing && <FormAddResult players={props.players} decknames={props.decknames} onSaveResultData={saveResultDataHandler} onCancel={stopEditingHandler}/>}
+    <div className="new-result">
+
+      {props.addResultActive  && <FormAddResult players={props.players} decks={props.decks} onSaveResultData={saveResultDataHandler} onCancel={stopEditingHandler}/>}
     </div>
   );
 }

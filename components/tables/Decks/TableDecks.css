@@ -10,3 +10,9 @@
     /* height: 100%;
     overflow-y: scroll; */
 }
+
+.table_decks__players {
+    margin: 20px 10px 10px 10px;
+    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+    font-size: 24px;
+}

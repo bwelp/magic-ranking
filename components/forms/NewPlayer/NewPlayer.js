@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import './NewPlayer.css';
 import FormAddPlayer from './FormAddPlayer';
 
 const NewPlayer = (props) => {
-    const[isEditing, setIsEditing] = useState(false);
 
   const savePlayerDataHandler = (enteredPlayerData) => {
     const playerData = {
@@ -12,26 +10,20 @@ const NewPlayer = (props) => {
     };
 
     props.onAddPlayer(playerData);
-    setIsEditing(false);
-  };
-
-  const startEditingHandler = () => {
-    setIsEditing(true);
+    props.onStopAdding(false);
   };
 
   const stopEditingHandler = () => {
-    setIsEditing(false);
+    props.onStopAdding(false);
   }
 
   return (
     <div className="new-player">
-      {!isEditing && (
-        <button onClick={startEditingHandler}>Spieler hinzufügen</button>
-      )}
-      {isEditing && (
+      {props.addPlayerActive && (
         <FormAddPlayer
           onSavePlayerData={savePlayerDataHandler}
           onCancel={stopEditingHandler}
+          players={props.players}
         />
       )}
     </div>

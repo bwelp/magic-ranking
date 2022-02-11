@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import './Decks.css';
 
@@ -10,31 +10,71 @@ function Decks(props) {
   const [addDeckBoxActive, setAddDeckBoxActive] = useState(false);
   const [activeDeck, setActiveDeck] = useState("");
   const [deckData, setDeckData] = useState({});
-
-  const restoreDecks = () => {
-    let savedDecks = localStorage.getItem("decks");
-    if (savedDecks !== null && savedDecks !== []) {
-      let restoredDecks = [];
-      JSON.parse(savedDecks).forEach((deck) => {
-        restoredDecks.push(deck);
-      });
-      return restoredDecks;
-    } else {
-      return [];
-    }
-  };
-
-  const [decks, setDecks] = useState(() => {
-    return restoreDecks();
-  });
-
-  const saveDecks = () => {
-    localStorage.setItem("decks", JSON.stringify(decks));
-  };
+  const [deckStatistic, setDeckStatistic] = useState({});
+  const [diagramData, setDiagramData] = useState([]);
 
   const createDeckStatistic = (deckname) => {
-    let deckStatistic = {};
-    return deckStatistic;
+    let numOfAllGames = props.results.length;
+    let numOfGames = 0;
+    let numOfPlace1 = 0;
+    let numOfPlace2 = 0;
+    let numOfPlace3 = 0;
+    let numOfPlace4 = 0;
+    let numOfPlace5 = 0;
+    let numOfPlace6 = 0;
+    let numOfPlace7 = 0;
+    for (let i = 0; i < props.results.length; i++) {
+      if (props.results[i].decks[0] === deckname) {
+        numOfPlace1++;
+      }
+      if (props.results[i].decks[1] === deckname) {
+        numOfPlace2++;
+      }
+      if (props.results[i].decks[2] === deckname) {
+        numOfPlace3++;
+      }
+      if (props.results[i].decks[3] === deckname) {
+        numOfPlace4++;
+      }
+      if (props.results[i].decks[4] === deckname) {
+        numOfPlace5++;
+      }
+      if (props.results[i].decks[5] === deckname) {
+        numOfPlace6++;
+      }
+      if (props.results[i].decks[6] === deckname) {
+        numOfPlace7++;
+      }
+      for (let j = 0; j < props.results[i].decks.length; j++) {
+        if (props.results[i].decks[j] === deckname) {
+          numOfGames++;
+        }
+      }
+    }
+
+    let winRate = 0;
+    let winRateTotal = 0;
+
+    if (numOfGames !== 0) {
+      winRate = Math.round((numOfPlace1 / numOfGames) * 100);
+      winRateTotal = Math.round((numOfPlace1 / numOfAllGames) * 100);
+    }
+
+    let numOfPlace4Plus = numOfPlace4 + numOfPlace5 + numOfPlace6 + numOfPlace7;
+
+    setDiagramData( [
+      {label: "Platz 1", size: numOfPlace1, color: "#D4AF37"},
+      {label: "Platz 2", size: numOfPlace2, color: "#D0D2D1"},
+      {label: "Platz 3", size: numOfPlace3, color: "#BF8970"},
+      {label: "Platz 4+", size: numOfPlace4Plus, color: "#F0F0F8"}
+    ]);
+
+    return {
+      numberOfAllGames: numOfAllGames,
+      numberOfGames: numOfGames,
+      winRate: winRate,
+      winRateTotal: winRateTotal
+    };
   };
 
   console.log(props.results);
@@ -47,34 +87,12 @@ function Decks(props) {
     }
     if(deckname !== "") {
       setAddDeckBoxActive(false);
-      setDeckData(decks.filter(deck => deck.deckname === deckname)[0]);
+      setDeckData(props.decks.filter(deck => deck.deckname === deckname)[0]);
+      setDeckStatistic(createDeckStatistic(deckname));
     }
     console.log(deckData);
-    setDeckData(...deckData, createDeckStatistic(deckname));
+    console.log(deckStatistic)
   };
-
-  function addDeckHandler(enteredDeckData) {
-    setDecks((prevDecks) => {
-      return [...prevDecks, enteredDeckData];
-    });
-  }
-
-  function removeDeckHandler(deckname) {
-    setDecks(function (prevDecks) {
-      let index = -1;
-      for (let i = 0; i < prevDecks.length; i++) {
-        if (prevDecks[i].deckname === deckname) {
-          index = i;
-          break;
-        }
-      }
-
-      if (index !== -1) {
-        prevDecks.splice(index, 1);
-      }
-      return [...prevDecks];
-    });
-  }
 
   const deckPlusButtonClickHandler = (event) => {
     setActiveDeck("");
@@ -84,13 +102,6 @@ function Decks(props) {
   const stopAddingDeckHandler = () => {
     setAddDeckBoxActive(false);
   };
-
- 
-
-  useEffect(() => {
-    saveDecks();
-    props.onRelayDecknames(decks);
-  });
 
   return (
     <div>
@@ -108,18 +119,19 @@ function Decks(props) {
       </div>
       <div id="deck_container">
         <TableDecks
-          decks={decks}
+          decks={props.decks}
           players={props.players}
-          onRemoveDeck={removeDeckHandler}
+          onRemoveDeck={props.onRemoveDeck}
           onOpenDeckStatistic={openDeckStatisticHandler}
         />
         <NewDeck
-          onAddDeck={addDeckHandler}
+          onAddDeck={props.onAddDeck}
           players={props.players}
+          decks={props.decks}
           addDeckActive={addDeckBoxActive}
           onStopAdding={stopAddingDeckHandler}
         />
-        {activeDeck !== "" && <DeckStatistics deck={deckData} activeDeck={activeDeck} />}
+        {activeDeck !== "" && <DeckStatistics deck={deckData} activeDeck={activeDeck} deckStatistic={deckStatistic} diagramData={diagramData}/>}
       </div>
     </div>
   );

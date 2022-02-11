@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './DeckStatistics.css';
+import DeckStatisticsDiagram from './DeckStatisticsDiagram.js';
 
 import white from "../../../img/white_lightgray.jpg";
 import blue from "../../../img/blue_lightgray.jpg";
@@ -11,7 +12,39 @@ import colorlessImg from "../../../img/colorless_lightgray.jpg";
 import commander_symbol from "../../../img/commander_symbol_2_lightgray.png";
 
 const DeckStatistics = (props) => {
-  console.log(props);
+
+  // const RankDiagram = () => {
+  //   let diagramData = { values: [
+  //     {label: "1. Platz", size: props.deckStatistic.numOfPlace1, color: "#FF2400"},
+  //     {label: "2. Platz", size: props.deckStatistic.numOfPlace2, color: "#FEFE33"},
+  //     {label: "3. Platz", size: props.deckStatistic.numOfPlace3, color: "#00FF00"},
+  //     {label: "4. Platz", size: props.deckStatistic.numOfPlace4, color: "#0000FF"}
+  //   ]};
+
+  //   let canvas = document.getElementById("active_deck__rank_diagramm");
+
+  //   let canvasWidth = 200;
+  //   let canvasHeight = 200;
+  //   canvas.setAttribute('width', canvasWidth);
+  //   canvas.setAttribute('height', canvasHeight);
+  //   let cv = canvas.getContext("2d");
+
+  //   let graphMax = 20;
+  //   let graphPadding = 10;
+  //   let graphFactor = (canvasHeight - (2 * graphPadding)) / graphMax;
+  //   let graphWidth = (canvasWidth - graphPadding) / diagramData.values.length;
+  //   let graphTextcolor = '#000000';
+    
+  //   for (let i= 0; i < diagramData.values.length; i++) {
+  //     tmpTop = (canvasHeight - (graphFactor * diagramData.values.size)).toFixed() - graphPadding;
+  //     tmpHeight = (diagramData.values.size * graphFactor).toFixed();
+  //     cv.fillStyle = diagramData.values.color;
+  //     cv.fillRect(graphWidth + ((i - 1) * graphWidth) + graphPadding, tmpTop, graphWidth - graphPadding, tmpHeight);
+  //     cv.fillStyle = graphTextcolor;
+  //     cv.fillText(diagramData.values.label, graphWidth + ((i - 1) * graphWidth) + graphPadding + 2, canvasHeight - 2, graphWidth);
+  //   }
+
+  // };
 
   return (
     <div id="active_deck__container">
@@ -62,11 +95,11 @@ const DeckStatistics = (props) => {
         </div>
       </div>
       <div id="active_deck__statistics">
-          <div>Anzahl Spiele: </div>
-          <div>Anzahl Siege:</div>
-          <div>Gewinnrate (teilgenommene Spiele): </div>
-          <div>Gewinnrate (gesamt): </div>
+          <div>Anzahl Spiele: {props.deckStatistic.numberOfGames}</div>
+          <div>Anzahl Siege: {props.deckStatistic.numberOfPlace1}</div>
+          <div>Gewinnrate: {props.deckStatistic.winRate} %</div>
           <div>Platzierungen: </div>
+          <DeckStatisticsDiagram diagramData={props.diagramData}/>
       </div>
     </div>
   );

@@ -1,4 +1,71 @@
-.add-player-container {
+.form_add_player {
+  width: 300px;
+  margin: 10px;
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.form_add_player input {
+  margin-bottom: 2px;
+  margin-right: 6px;
+}
+
+.form_add_player input[type=text]:focus {
+  background-color: lightblue;
+}
+
+#add_player__name,
+#add_player__buttons {
+  margin: 10px;
+}
+
+.form_add_player button {
+  cursor: pointer;
+  padding: 2px 5px 2px 5px;
+  border: 1px solid rgb(228, 93, 59);
+  background-color: rgb(228, 93, 59);
+  color: white;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+.form_add_player button:hover,
+.form_add_player button:active {
+  background-color: rgb(226, 111, 82);
+  border-color: rgb(226, 111, 82);
+}
+
+.form_add_player button:disabled,
+.form_add_player button:disabled:hover,
+.form_add_player button:disabled:active {
+  background-color:#ccc;
+  color: #292929;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+#deckname {
+  margin-left: 55px;
+}
+
+.invalid input {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
+.invalid input:focus {
+  border-color: #ff8800;
+  background-color: #fbe8d2;
+}
+
+.error-text {
+  color: #b40e0e;
+  margin-left: 10px;
+}
+
+
+/* .add-player-container {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -23,4 +90,4 @@
   
   .add-player-action {
     text-align: right;
-  }
+  } */

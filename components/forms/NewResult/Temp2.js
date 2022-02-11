@@ -7,16 +7,14 @@ import FormAddDeckOptions from "../NewResult/FormAddDeckOptions";
 
 const FormAddResult = (props) => {
   const [numberOfPlayersArray, setNumberOfPlayersArray] = useState([]);
-  const [playersArrayContainsDuplicates, setPlayersArrayContainsDuplicates] = useState(false);
-  const [decksArrayContainsDuplicates, setDecksArrayContainsDuplicates] = useState(false);
-  const [playersArrayContainsInvalidValue, setPlayersArrayContainsInvalidValue] = useState(false);
-  const [decksArrayContainsInvalidValue, setDecksArrayContainsInvalidValue] = useState(false);
 
   const playerInputRef = useRef([]);
   const deckInputRef = useRef([]);
   // const gameRoundInputRef = useRef();
   // const gameLocationInputRef = useRef();
   // const gameDateInputRef = useRef();
+
+  
 
   const numberOfPlayersChangeHandler = (event) => {
     let numberOfPlayersArr = [];
@@ -29,9 +27,64 @@ const FormAddResult = (props) => {
   };
 
   let chooseNumberOfPlayersArray = [];
-  for (let i = 0; i < props.players.length; i++) {
-    chooseNumberOfPlayersArray[i] = i + 2;
+  for (let i = 0; i < 10; i++) {
+    chooseNumberOfPlayersArray[i] = i + 1;
   }
+
+  // let playerArray = [];
+  // let playerIsValidArray = [];
+  // let playerHasErrorArray = [];
+  // let playerInputClassesArray = [];
+  // let playerChangeHandlerArray = [];
+  // let playerBlurHandlerArray = [];
+  // let resetPlayerArray = [];
+
+  // let deckArray = [];
+  // let deckIsValidArray = [];
+  // let deckHasErrorArray = [];
+  // let deckInputClassesArray = [];
+  // let deckChangeHandlerArray = [];
+  // let deckBlurHandlerArray = [];
+  // let resetDeckArray = [];
+
+  // for (let i = 0; i < numberOfPlayersArray.length; i++) {
+
+  //   const {
+  //     value: player,
+  //     isValid: playerIsValid,
+  //     hasError: playerHasError,
+  //     valueInputClasses: playerInputClasses,
+  //     valueChangeHandler: playerChangeHandler,
+  //     inputBlurHandler: playerBlurHandler,
+  //     resetInput: resetPlayer
+  //   } = useFormInput("text", value => value !== "");
+    
+  //   playerArray.push(player);
+  //   playerIsValidArray.push(playerIsValid);
+  //   playerHasErrorArray.push(playerHasError);
+  //   playerInputClassesArray.push(playerInputClasses);
+  //   playerChangeHandlerArray.push(playerChangeHandler);
+  //   playerBlurHandlerArray.push(playerBlurHandler);
+  //   resetPlayerArray.push(resetPlayer);
+
+  //   const {
+  //     value: deck,
+  //     isValid: deckIsValid,
+  //     hasError: deckHasError,
+  //     valueInputClasses: deckInputClasses,
+  //     valueChangeHandler: deckChangeHandler,
+  //     inputBlurHandler: deckBlurHandler,
+  //     resetInput: resetDeck
+  //   } = useFormInput("text", value => value !== "");
+    
+  //   deckArray.push(deck);
+  //   deckIsValidArray.push(deckIsValid);
+  //   deckHasErrorArray.push(deckHasError);
+  //   deckInputClassesArray.push(deckInputClasses);
+  //   deckChangeHandlerArray.push(deckChangeHandler);
+  //   deckBlurHandlerArray.push(deckBlurHandler);
+  //   resetDeckArray.push(resetDeck);
+  // }
 
   const {
     value: gameRound,
@@ -40,8 +93,8 @@ const FormAddResult = (props) => {
     valueInputClasses: gameRoundInputClasses,
     valueChangeHandler: gameRoundChangeHandler,
     inputBlurHandler: gameRoundBlurHandler,
-    resetInput: resetGameRound,
-  } = useFormInput("text", (value) => parseInt(value) >= 1);
+    resetInput: resetGameRound
+  } = useFormInput("text", value => parseInt(value) >= 1);
 
   const {
     value: gameLocation,
@@ -50,8 +103,8 @@ const FormAddResult = (props) => {
     valueInputClasses: gameLocationInputClasses,
     valueChangeHandler: gameLocationChangeHandler,
     inputBlurHandler: gameLocationBlurHandler,
-    resetInput: resetGameLocation,
-  } = useFormInput("text", (value) => value.trim() !== "");
+    resetInput: resetGameLocation
+  } = useFormInput("text", value => value.trim() !== "");
 
   const {
     value: gameDate,
@@ -60,24 +113,12 @@ const FormAddResult = (props) => {
     valueInputClasses: gameDateInputClasses,
     valueChangeHandler: gameDateChangeHandler,
     inputBlurHandler: gameDateBlurHandler,
-    resetInput: resetGameDate,
-  } = useFormInput("text", (value) => value !== "");
-
-  const arrayContainsDuplicates = arr => {
-    console.log(arr);
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = i + 1; j < arr.length; j++) {
-        if(arr[i] === arr[j]) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
+    resetInput: resetGameDate
+  } = useFormInput("text", value => value !== "");
 
   let formIsValid = false;
-  
-  if (gameLocationIsValid && gameDateIsValid && gameRoundIsValid && numberOfPlayersArray.length >= 2) {
+
+  if (gameLocationIsValid && gameDateIsValid && gameRoundIsValid) {
     formIsValid = true;
   }
 
@@ -85,52 +126,21 @@ const FormAddResult = (props) => {
     event.preventDefault();
 
     if (formIsValid === false) {
-      return;
+      return; 
     }
 
+    console.log(numberOfPlayersArray);
+    console.log(playerInputRef);
+
     let enteredPlayers = [];
-    playerInputRef.current.forEach((player, index) => {
-      if (
-        index >=
-        playerInputRef.current.length - numberOfPlayersArray.length
-      ) {
-        enteredPlayers.push(player.value);
-      }
+    playerInputRef.current.forEach((player) => {
+      enteredPlayers.push(player.value);
     });
 
     let enteredDecks = [];
-    deckInputRef.current.forEach((deck, index) => {
-      if (
-        index >=
-        playerInputRef.current.length - numberOfPlayersArray.length
-      ) {
-        enteredDecks.push(deck.value);
-      }
+    deckInputRef.current.forEach((deck) => {
+      enteredDecks.push(deck.value);
     });
-
-    let playersArrContainsInvalidValue = enteredPlayers.includes("");
-    let decksArrContainsInvalidValue = enteredDecks.includes("");
-
-    playersArrContainsInvalidValue
-    ? setPlayersArrayContainsInvalidValue(true)
-    : setPlayersArrayContainsInvalidValue(false);
-    decksArrContainsInvalidValue
-    ? setDecksArrayContainsInvalidValue(true)
-    : setDecksArrayContainsInvalidValue(false);
-
-    let playersArrContainsDuplicates = arrayContainsDuplicates(enteredPlayers);
-    let decksArrContainsDuplicates = arrayContainsDuplicates(enteredDecks);
-
-    playersArrContainsDuplicates
-      ? setPlayersArrayContainsDuplicates(true)
-      : setPlayersArrayContainsDuplicates(false);
-    decksArrContainsDuplicates
-      ? setDecksArrayContainsDuplicates(true)
-      : setDecksArrayContainsDuplicates(false);
-
-    if (playersArrContainsDuplicates || decksArrContainsDuplicates || playersArrContainsInvalidValue || decksArrContainsInvalidValue) {
-      return;
-    }
 
     // const enteredGameRound = gameRoundInputRef.current.value;
     // const enteredGameLocation = gameLocationInputRef.current.value;
@@ -153,10 +163,15 @@ const FormAddResult = (props) => {
     // gameLocationInputRef.current.value = '';
     // gameDateInputRef.current.value = '';
 
+    // for (let i = 0; i < numberOfPlayersArray.length; i++) {
+    //   resetPlayer[i]();
+    //   resetDeck[i]();
+    // }
+
     resetGameRound();
     resetGameLocation();
     resetGameDate();
-  };;
+  };
 
   return (
     <div className="form_add_result">
@@ -200,7 +215,7 @@ const FormAddResult = (props) => {
                   id={`deck${number}`}
                   name={`deck${number}`}
                   form="add-result"
-                  ref={(element) => deckInputRef.current.push(element)}
+                  ref={(element) => (deckInputRef.current.push(element))}
                 >
                   <option value="">Deck auswählen</option>
                   {props.decks.map((deck) => (
@@ -212,26 +227,6 @@ const FormAddResult = (props) => {
                 </select>
               </div>
             ))}
-            {playersArrayContainsInvalidValue && (
-            <p className="error-text">
-              Bitte für alle Spieler einen gültigen Namen angeben!
-            </p>
-          )}
-          {decksArrayContainsInvalidValue && (
-            <p className="error-text">
-              Bitte für alle Spieler ein gültiges Deck angeben!
-            </p>
-          )}
-          {playersArrayContainsDuplicates && (
-            <p className="error-text">
-              Doppelte Spielernamen sind nicht zulässig!
-            </p>
-          )}
-          {decksArrayContainsDuplicates && (
-            <p className="error-text">
-              Doppelte Decknamen sind nicht zulässig!
-            </p>
-          )}
         </div>
         <div id="add_result__game_round" className={gameRoundInputClasses}>
           <label htmlFor="game-round">Spielrunde </label>
@@ -246,15 +241,10 @@ const FormAddResult = (props) => {
             // ref={gameRoundInputRef}
           />
           {gameRoundHasError && (
-            <p className="error-text">
-              Bitte eine gültige Spielrunde auswählen!
-            </p>
+            <p className="error-text">Bitte eine gültige Spielrunde auswählen!</p>
           )}
         </div>
-        <div
-          id="add_result__game_location"
-          className={gameLocationInputClasses}
-        >
+        <div id="add_result__game_location" className={gameLocationInputClasses}>
           <label htmlFor="game-location">Spielort </label>
           <input
             type="text"
@@ -267,9 +257,7 @@ const FormAddResult = (props) => {
             // ref={gameLocationInputRef}
           />
           {gameLocationHasError && (
-            <p className="error-text">
-              Bitte einen gültigen Spielort eingeben!
-            </p>
+            <p className="error-text">Bitte einen gültigen Spielort eingeben!</p>
           )}
         </div>
         <div id="add_result__game_date" className={gameDateInputClasses}>
@@ -297,7 +285,6 @@ const FormAddResult = (props) => {
           </button>
         </div>
       </form>
-    
     </div>
   );
 };

@@ -17,7 +17,7 @@ const DeckItem = (props) => {
 
   const deckItemClickHandler = (event) => {
     props.onOpenStatistic(event.target.attributes.deck.value);
-  }
+  };
 
   // <tr>
   //     <td>{props.deckname}</td>
@@ -50,35 +50,85 @@ const DeckItem = (props) => {
   // );
 
   return (
-    <div className="deck_item" deck={props.deckname} onClick={deckItemClickHandler}>
+    <div
+      className="deck_item"
+      deck={props.deckname}
+      onClick={deckItemClickHandler}
+    >
       <div className="deck_item__deckname" deck={props.deckname}>
         <div deck={props.deckname}>{props.deckname}</div>
         <div deck={props.deckname}>
           {props.colorWhite && (
-            <img src={white} alt="weiß" className="deck_item__img" deck={props.deckname} />
+            <img
+              src={white}
+              alt="weiß"
+              className="deck_item__img"
+              deck={props.deckname}
+            />
           )}
           {props.colorBlue && (
-            <img src={blue} alt="blau" className="deck_item__img" deck={props.deckname} />
+            <img
+              src={blue}
+              alt="blau"
+              className="deck_item__img"
+              deck={props.deckname}
+            />
           )}
           {props.colorBlack && (
-            <img src={black} alt="schwarz" className="deck_item__img" deck={props.deckname} />
+            <img
+              src={black}
+              alt="schwarz"
+              className="deck_item__img"
+              deck={props.deckname}
+            />
           )}
-          {props.colorRed && <img src={red} alt="rot" className="deck_item__img" deck={props.deckname} />}
+          {props.colorRed && (
+            <img
+              src={red}
+              alt="rot"
+              className="deck_item__img"
+              deck={props.deckname}
+            />
+          )}
           {props.colorGreen && (
-            <img src={green} alt="grün" className="deck_item__img" deck={props.deckname} />
+            <img
+              src={green}
+              alt="grün"
+              className="deck_item__img"
+              deck={props.deckname}
+            />
           )}
           {props.colorless && (
-            <img src={colorlessImg} alt="farblos" className="deck_item__img" deck={props.deckname} />
+            <img
+              src={colorlessImg}
+              alt="farblos"
+              className="deck_item__img"
+              deck={props.deckname}
+            />
           )}
         </div>
       </div>
       <div className="deck_item__commander" deck={props.deckname}>
-        <img src={commander_symbol} alt="Commander-Symbol" className="deck_item__img" deck={props.deckname} />{props.commander}
+        <img
+          src={commander_symbol}
+          alt="Commander-Symbol"
+          className="deck_item__img"
+          deck={props.deckname}
+        />
+        {props.commander}
         <br />
-        {props.secondCommander !== "" && <img src={commander_symbol} alt="Commander-Symbol" className="deck_item__img" deck={props.deckname} />}{props.secondCommander}
+        {props.secondCommander !== "" && (
+          <img
+            src={commander_symbol}
+            alt="Commander-Symbol"
+            className="deck_item__img"
+            deck={props.deckname}
+          />
+        )}
+        {props.secondCommander}
       </div>
       <div>
-        <button 
+        <button
           type="click"
           className="deck_item__remove_button"
           onClick={removeDeckClickHandler}
