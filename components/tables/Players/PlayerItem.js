@@ -9,10 +9,14 @@ const PlayerItem = (props) => {
         props.onRemovePlayer(event.target.attributes.player.value);
     }
 
-    return <div className="player_item">
-        <div className="player_item__player">
+     const playerItemClickHandler = (event) => {
+        props.onOpenStatistic(event.target.attributes.playername.value);
+    };
+
+    return <div className="player_item" onClick={playerItemClickHandler} playername={props.player}>
+        <div className="player_item__player" playername={props.player}>
             {props.player}</div>
-        <button className="player_item__remove_button" type="click" onClick={removePlayerClickHandler} player={props.player}>X</button>
+        <button className="player_item__remove_button" type="click" onClick={removePlayerClickHandler} player={props.player} playername="">X</button>
     </div>
 };
 
