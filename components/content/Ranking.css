@@ -1,0 +1,30 @@
+.ranking_filter_year_button {
+    font-size: 16px;
+    font-size: bold;
+    cursor: pointer;
+    padding: 2px 5px 0px 5px;
+    border: 1px solid rgb(226, 143, 122);
+    background-color: rgb(226, 143, 122);
+    color: white;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+
+.ranking_filter_year_button:hover,
+.ranking_filter_year_button:active {
+    background-color: rgb(228, 93, 59);
+    border-color: rgb(228, 93, 59);
+    cursor: pointer;
+} 
+
+.filterActive {
+    border: 1px solid rgb(228, 93, 59);
+    background-color: rgb(228, 93, 59);
+}
+
+#start {
+    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+    font-size: 24px;
+    margin: 20px;
+    margin-top: 50px;
+}

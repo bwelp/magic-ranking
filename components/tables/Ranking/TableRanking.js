@@ -5,22 +5,44 @@ import RankItem from './RankItem';
 
 
 
-const TableRanking = () => {
+const TableRanking = (props) => {
+
+
+  // const filterChangeHandler = (selectedYear) => {
+  //   setFilteredYear(selectedYear);
+  //   console.log("Expense.js");
+  //   console.log(selectedYear);
+  // };
+
+  // const filteredExpenses = props.items.filter(expense => {
+  //   return expense.date.getFullYear().toString() === filteredYear;
+  // });
+
   function rankPlayers() {
     let numberOfWins = [];
-    let results = localStorage.getItem("results");
-    let players = localStorage.getItem("players");
+
+    let filteredResults;
+    if (props.filteredYear === "") {
+      filteredResults = props.results;
+    } else {
+      filteredResults = props.results.filter((result) => {
+        return result.gameDate.substr(0, 4) === props.filteredYear;
+      });
+    }
+
+    console.log(filteredResults); ////////////////
+
     if (
-      players !== null &&
-      players !== [] &&
-      results !== null &&
-      results !== []
+      props.players !== null &&
+      props.players !== [] &&
+      filteredResults !== null &&
+      filteredResults !== []
     ) {
-      JSON.parse(players).forEach((player) => {
+      props.players.forEach((player) => {
         let numWins = 0;
         let numSecondPlace = 0;
         let numRounds = 0;
-        JSON.parse(results).forEach((result) => {
+        filteredResults.forEach((result) => {
           if (result.players[0] === player.player) {
             numWins += 1;
           }
