@@ -19,10 +19,7 @@ function Decks(props) {
     let numOfPlace1 = 0;
     let numOfPlace2 = 0;
     let numOfPlace3 = 0;
-    let numOfPlace4 = 0;
-    let numOfPlace5 = 0;
-    let numOfPlace6 = 0;
-    let numOfPlace7 = 0;
+    let numOfPlace4Plus = 0;
     for (let i = 0; i < props.results.length; i++) {
       if (props.results[i].decks[0] === deckname) {
         numOfPlace1++;
@@ -33,17 +30,10 @@ function Decks(props) {
       if (props.results[i].decks[2] === deckname) {
         numOfPlace3++;
       }
-      if (props.results[i].decks[3] === deckname) {
-        numOfPlace4++;
-      }
-      if (props.results[i].decks[4] === deckname) {
-        numOfPlace5++;
-      }
-      if (props.results[i].decks[5] === deckname) {
-        numOfPlace6++;
-      }
-      if (props.results[i].decks[6] === deckname) {
-        numOfPlace7++;
+      for (let j = 3; j < props.results[i].decks.length; j++) {
+        if (props.results[i].decks[3] === deckname) {
+          numOfPlace4Plus++;
+        }
       }
       for (let j = 0; j < props.results[i].decks.length; j++) {
         if (props.results[i].decks[j] === deckname) {
@@ -60,8 +50,6 @@ function Decks(props) {
       winRateTotal = Math.round((numOfPlace1 / numOfAllGames) * 100);
     }
 
-    let numOfPlace4Plus = numOfPlace4 + numOfPlace5 + numOfPlace6 + numOfPlace7;
-
     setDiagramData( [
       {label: "Platz 1", size: numOfPlace1, color: "#D4AF37"},
       {label: "Platz 2", size: numOfPlace2, color: "#D0D2D1"},
@@ -72,6 +60,7 @@ function Decks(props) {
     return {
       numberOfAllGames: numOfAllGames,
       numberOfGames: numOfGames,
+      numberOfPlace1: numOfPlace1,
       winRate: winRate,
       winRateTotal: winRateTotal
     };
@@ -88,8 +77,6 @@ function Decks(props) {
       setDeckData(props.decks.filter(deck => deck.deckname === deckname)[0]);
       setDeckStatistic(createDeckStatistic(deckname));
     }
-    console.log(deckData);
-    console.log(deckStatistic)
   };
 
   const deckPlusButtonClickHandler = (event) => {
@@ -129,7 +116,7 @@ function Decks(props) {
           addDeckActive={addDeckBoxActive}
           onStopAdding={stopAddingDeckHandler}
         />
-        {activeDeck !== "" && <DeckStatistics deck={deckData} activeDeck={activeDeck} deckStatistic={deckStatistic} diagramData={diagramData}/>}
+        <DeckStatistics deck={deckData} activeDeck={activeDeck} deckStatistic={deckStatistic} diagramData={diagramData}/>
       </div>
     </div>
   );

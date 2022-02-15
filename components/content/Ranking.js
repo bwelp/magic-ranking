@@ -28,7 +28,7 @@ const Ranking = (props) => {
   };
 
   return (
-    <div>
+    <div> 
       <div className="headline_container">
         <div className="headline">Bestenliste </div>
         <button
@@ -47,6 +47,7 @@ const Ranking = (props) => {
           yearArray.map((year) => (
             <button
               type="button"
+              key={year}
               value={year}
               className={
                 year === filteredYear
@@ -61,6 +62,7 @@ const Ranking = (props) => {
       </div>
       {props.results.length > 0 && (
         <TableRanking
+          key={filteredYear}
           results={props.results}
           players={props.players}
           filteredYear={filteredYear}

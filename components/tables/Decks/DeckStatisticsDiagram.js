@@ -7,6 +7,9 @@ const DeckStatisticsDiagram = (props) => {
 
   const canvasRef = useRef(null);
 
+  let canvasWidth = 500;
+  let canvasHeight = 130; 
+
   // const RankDiagram = () => {
   //   let diagramData = { values: [
   //     {label: "1. Platz", size: props.deckStatistic.numOfPlace1, color: "#FF2400"},
@@ -45,26 +48,28 @@ const DeckStatisticsDiagram = (props) => {
     let yBase = 10;
     let yPlus = 30;
     let barHeight = 20;
+    let lengthMultiplier = 40;
     for (let i = 0; i < 4; i++) {
+      ctx.fillStyle = "#000000";
       ctx.font = '16px "Noto Sans JP"';
       ctx.fillText(diagramData[i].label, 10, 25 + (30 * i));
     }
     for (let i = 0; i < 4; i++) {
       ctx.fillStyle = diagramData[i].color;
-      ctx.fillRect(x, yBase + yPlus * i, 1 + 20 * diagramData[i].size, barHeight);
-      ctx.fillText(diagramData[i].size, x + 1 + 20 * diagramData[i].size +10, 25 + (30 * i));
+      ctx.fillRect(x, yBase + yPlus * i, 1 + lengthMultiplier * diagramData[i].size, barHeight);
+      ctx.fillText(diagramData[i].size, x + 1 + lengthMultiplier * diagramData[i].size + 10, 25 + (30 * i));
     }
   }, [diagramData]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    context.clearRect(0, 0, 300, 200);
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
 
     draw(context);
-  }, [draw]);
+  }, [draw, canvasWidth, canvasHeight]);
 
-  return <canvas ref={canvasRef} width="300" height="200" />;
+  return <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} />;
 };
 
 export default DeckStatisticsDiagram;

@@ -43,13 +43,13 @@ function Content(props) {
   const chooseContent = () => {
     switch (props.items) {
       case "addPlayer":
-        return <Players players={players} onAddPlayer={addPlayerHandler} onRemovePlayer={removePlayerHandler}/>;
+        return <Players players={players} decks={decks} results={results} onAddPlayer={addPlayerHandler} onRemovePlayer={removePlayerHandler}/>;
       case "addDeck":
         return <Decks players={players} decks={decks} results={results} onAddDeck={addDeckHandler} onRemoveDeck={removeDeckHandler} />;
       case "addResult":
         return <Results results={results} decks={decks} players={players} onAddResult={addResultHandler} onRemoveResult={removeResultHandler} />;
       default:
-        return <Ranking />;
+        return <Ranking results={results} players={players} />;
     }
   };
 

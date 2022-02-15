@@ -8,15 +8,25 @@ function TableResults(props) {
 
   const createDateArray = (res) => {
     let DateArray = [];
-    DateArray.push({gameDate: res[0].gameDate, gameLocation: res[0].gameLocation})
-    for(let i = 1; i < res.length; i++) {
-      if(res[i].gameDate !== res[i - 1].gameDate) {
-        DateArray.push({gameDate: res[i].gameDate, gameLocation: res[i].gameLocation});
+    if (res.length > 0) {
+      DateArray.push({
+        gameDate: res[0].gameDate,
+        gameLocation: res[0].gameLocation,
+      });
+    }
+    if (res.length > 0) {
+      for (let i = 1; i < res.length; i++) {
+        if (res[i].gameDate !== res[i - 1].gameDate) {
+          DateArray.push({
+            gameDate: res[i].gameDate,
+            gameLocation: res[i].gameLocation,
+          });
+        }
       }
     }
-    
+
     return DateArray;
-  }
+  };
 
   const outputDate = (dateInput) => {
     let date = new Date(dateInput.substring(0, 4), parseInt(dateInput.substring(5, 7)) -1, dateInput.substring(8, 10));
