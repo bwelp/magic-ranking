@@ -8,36 +8,86 @@ import Results from "./content/Results";
 import Ranking from "./content/Ranking";
 
 function Content(props) {
+const {
+  items: players,
+  error: playerError,
+  isLoading: playerIsLoading,
+  restoreItems: restorePlayers,
+  addItemHandler: addPlayerHandler,
+  removeItemHandler: removePlayerHandler,
+} = UseSaveAndRestore("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/players.json", "player");
 
-  const {
-    items: players,
-    addItemHandler: addPlayerHandler,
-    removeItemHandler: removePlayerHandler,
-  } = UseSaveAndRestore("players", "player");
+const {
+  items: decks,
+  error: deckError,
+  isLoading: deckIsLoading,
+  restoreItems: restoreDecks,
+  addItemHandler: addDeckHandler,
+  removeItemHandler: removeDeckHandler,
+} = UseSaveAndRestore("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/decks.json", "deckname");
 
-  const {
-    items: decks,
-    addItemHandler: addDeckHandler,
-    removeItemHandler: removeDeckHandler,
-  } = UseSaveAndRestore("decks", "deckname");
+const {
+  items: results,
+  error: resultError,
+  isLoading: resultIsLoading,
+  restoreItems: restoreResults,
+  addItemHandler: addResultHandler,
+  removeItemHandler: removeResultHandler,
+} = UseSaveAndRestore("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/results.json", "gameId");
 
-  const {
-    items: results,
-    addItemHandler: addResultHandler,
-    removeItemHandler: removeResultHandler,
-  } = UseSaveAndRestore("results", "gameId");
+  console.log(playerError);
+  console.log(deckError);
+  console.log(resultError);
+
+  console.log(playerIsLoading);
+  console.log(deckIsLoading);
+  console.log(resultIsLoading);
 
   useEffect(() => {
-    localStorage.setItem("players", JSON.stringify(players));
-  }, [players]);
+    restorePlayers("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/players.json", "players");
+  }, [restorePlayers]);
 
   useEffect(() => {
-    localStorage.setItem("decks", JSON.stringify(decks));
-  }, [decks]);
+    restoreDecks("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/decks.json", "decks");
+  }, [restoreDecks]);
 
   useEffect(() => {
-    localStorage.setItem("results", JSON.stringify(results));
-  }, [results]);
+    restoreResults("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/results.json", "results");
+  }, [restoreResults]);
+
+  console.log(players);
+  console.log(decks);
+  console.log(results);
+
+  // const {
+  //   items: players,
+  //   addItemHandler: addPlayerHandler,
+  //   removeItemHandler: removePlayerHandler,
+  // } = UseSaveAndRestore("players", "player");
+
+  // const {
+  //   items: decks,
+  //   addItemHandler: addDeckHandler,
+  //   removeItemHandler: removeDeckHandler,
+  // } = UseSaveAndRestore("decks", "deckname");
+
+  // const {
+  //   items: results,
+  //   addItemHandler: addResultHandler,
+  //   removeItemHandler: removeResultHandler,
+  // } = UseSaveAndRestore("results", "gameId");
+
+  // useEffect(() => {
+  //   localStorage.setItem("players", JSON.stringify(players));
+  // }, [players]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("decks", JSON.stringify(decks));
+  // }, [decks]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("results", JSON.stringify(results));
+  // }, [results]);
 
 
   const chooseContent = () => {

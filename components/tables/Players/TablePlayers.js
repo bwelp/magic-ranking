@@ -8,9 +8,11 @@ function TablePlayers(props) {
     props.onRemovePlayer(player);
   };
 
+  console.log(props.players);
+
   return (
     <div id="table_players__container">
-      {props.players.map((player) => (
+      {props.players !== null && props.players.map((player) => (
         <PlayerItem
           key={player.player}
           player={player.player}
