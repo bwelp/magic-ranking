@@ -3,7 +3,6 @@ import React from 'react';
 import './PlayerItem.css';
 
 const PlayerItem = (props) => {
-    console.log(props);
 
     const removePlayerClickHandler = (event) => {
         props.onRemovePlayer(event.target.attributes.player.value);

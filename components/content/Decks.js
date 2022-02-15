@@ -77,8 +77,6 @@ function Decks(props) {
     };
   };
 
-  console.log(props.results);
-
   const openDeckStatisticHandler = (deckname) => {
     if(deckname !== activeDeck){
     setActiveDeck(deckname);}

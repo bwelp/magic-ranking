@@ -196,9 +196,10 @@ const FormAddDeck = (props) => {
     }
 
     let uniqueDeckname = compareDecknames();
-    setColorErrorMessage(validateColors());
+    let colorErrMessage = validateColors()
+    setColorErrorMessage(colorErrMessage);
 
-    if (colorErrorMessage !== "valid") {
+    if (colorErrMessage !== "valid") {
       setColorsAreValid(false);
     } else {
       setColorsAreValid(true);
@@ -210,7 +211,7 @@ const FormAddDeck = (props) => {
       setDecknameIsUnique(true);
     }
 
-    if (!uniqueDeckname || colorErrorMessage !== "valid") {
+    if (!uniqueDeckname || colorErrMessage !== "valid") {
       return;
     }
 

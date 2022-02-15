@@ -8,7 +8,7 @@ const Ranking = (props) => {
 
   let yearArray = [];
   const { results } = props;
-
+  
   if (results.length > 0) {
     yearArray.push(results[0].gameDate.substr(0, 4));
   }
@@ -24,7 +24,6 @@ const Ranking = (props) => {
   }
 
   const filterYearButtonClickHandler = (event) => {
-    console.log(event.target.value);
     setFilteredYear(event.target.value);
   };
 

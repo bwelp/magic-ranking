@@ -6,7 +6,6 @@ const DeckStatisticsDiagram = (props) => {
   const { diagramData } = props;
 
   const canvasRef = useRef(null);
-  console.log(canvasRef);
 
   // const RankDiagram = () => {
   //   let diagramData = { values: [
@@ -55,8 +54,6 @@ const DeckStatisticsDiagram = (props) => {
       ctx.fillRect(x, yBase + yPlus * i, 1 + 20 * diagramData[i].size, barHeight);
       ctx.fillText(diagramData[i].size, x + 1 + 20 * diagramData[i].size +10, 25 + (30 * i));
     }
-
-    console.log("Hallo");
   }, [diagramData]);
 
   useEffect(() => {

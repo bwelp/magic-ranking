@@ -9,6 +9,7 @@ function Players(props) {
   const [addPlayerBoxActive, setAddPlayerBoxActive] = useState(false);
 
   const playerPlusButtonClickHandler = (event) => {
+    setActivePlayer("");
     setAddPlayerBoxActive(true);
   };
 

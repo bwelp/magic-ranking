@@ -7,17 +7,6 @@ import RankItem from './RankItem';
 
 const TableRanking = (props) => {
 
-
-  // const filterChangeHandler = (selectedYear) => {
-  //   setFilteredYear(selectedYear);
-  //   console.log("Expense.js");
-  //   console.log(selectedYear);
-  // };
-
-  // const filteredExpenses = props.items.filter(expense => {
-  //   return expense.date.getFullYear().toString() === filteredYear;
-  // });
-
   function rankPlayers() {
     let numberOfWins = [];
 
@@ -29,8 +18,6 @@ const TableRanking = (props) => {
         return result.gameDate.substr(0, 4) === props.filteredYear;
       });
     }
-
-    console.log(filteredResults); ////////////////
 
     if (
       props.players !== null &&
@@ -85,8 +72,6 @@ const TableRanking = (props) => {
       }
     });
   }
-
-  console.log(rankPlayers());
 
   return (
     <div id="ranking-container">

@@ -64,7 +64,6 @@ const FormAddResult = (props) => {
   } = useFormInput("text", (value) => value !== "");
 
   const arrayContainsDuplicates = arr => {
-    console.log(arr);
     for (let i = 0; i < arr.length; i++) {
       for (let j = i + 1; j < arr.length; j++) {
         if(arr[i] === arr[j]) {
