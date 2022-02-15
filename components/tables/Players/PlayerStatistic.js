@@ -11,7 +11,6 @@ import green from "../../../img/green.jpg";
 import colorlessImg from "../../../img/colorless.jpg";
 
 const PlayerStatistic = (props) => {
-  console.log(props);
 
   return (
     <div id="activePlayer">
@@ -30,7 +29,7 @@ const PlayerStatistic = (props) => {
               {props.playerStatistic.winRate} %
             </div>
           </div>
-          <div>Platzierungen: </div>
+          <div id="active_player__ranks">Platzierungen: </div>
             <PlayerStatisticsDiagram diagramData={props.playerDiagramData} />
           {props.playerStatistic.bestDeck !== "" && (
             <div id="active_player_deck">

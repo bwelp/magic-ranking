@@ -1,12 +1,9 @@
 import React, { useRef, useEffect, useCallback } from "react";
 
 const PlayerStatisticsDiagram = (props) => {
-    console.log(props);
   const { diagramData } = props;
-  console.log(diagramData);
 
   const canvasRef = useRef(null);
-  console.log(canvasRef);
 
   let canvasWidth = 500;
   let canvasHeight = 130; 
@@ -27,8 +24,6 @@ const PlayerStatisticsDiagram = (props) => {
       ctx.fillRect(x, yBase + yPlus * i, 1 + lengthMultiplier * diagramData[i].size, barHeight);
       ctx.fillText(diagramData[i].size, x + 1 + lengthMultiplier * diagramData[i].size + 10, 25 + (30 * i));
     }
-
-    console.log("Hallo");
   }, [diagramData]);
 
   useEffect(() => {
