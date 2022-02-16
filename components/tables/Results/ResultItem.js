@@ -3,35 +3,10 @@ import React from "react";
 import './ResultItem.css';
 
 const ResultItem = (props) => {
+
   const removeResultClickHandler = (event) => {
-    props.onRemoveResult(event.target.attributes.gameid.value);
+    props.onRemoveResult(event.target.attributes.resultid.value);
   };
-
-  
-
-  // <tr>
-  //     <td>{outputDate()}</td>
-  //     <td>{props.gameRound}</td>
-  //     <td>{props.gameLocation}</td>
-  //     <td>
-  //       <ol>
-  //         {props.players.map((player, index) => (
-  //           <li key={player}>
-  //             {player} ({props.decks[index]})
-  //           </li>
-  //         ))}
-  //       </ol>
-  //     </td>
-  //     <td>
-  //       <button
-  //         type="click"
-  //         onClick={removeResultClickHandler}
-  //         gameid={props.gameId}
-  //       >
-  //         X
-  //       </button>
-  //     </td>
-  //   </tr>
 
   return (
     <div className="result_item">
@@ -49,6 +24,7 @@ const ResultItem = (props) => {
           className="result_item__remove_button"
           onClick={removeResultClickHandler}
           gameid={props.gameId}
+          resultid={props.id}
         >
           X
         </button>

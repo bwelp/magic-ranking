@@ -10,7 +10,6 @@ const Ranking = (props) => {
   const { results } = props;
   
   if (results.length > 0) {
-    console.log(results);
     yearArray.push(results[0].gameDate.substr(0, 4));
   }
   if (results.length > 1) {

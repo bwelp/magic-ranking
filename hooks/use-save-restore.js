@@ -1,10 +1,21 @@
 import { useState, useCallback } from "react";
 
-const UseSaveAndRestore = (url, itemIdentifier) => {
+const UseSaveAndRestore = (url_f, itemIdentifier) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  
+
+  const compareItems = useCallback((a, b) => {
+    if (a[itemIdentifier] < b[itemIdentifier]) {
+      return -1;
+    }
+    if (a[itemIdentifier] > b[itemIdentifier]) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }, [itemIdentifier]);
+
   const restoreItems = useCallback(async (url_db, type) => {
     setIsLoading(true);
     setError(null);
@@ -15,7 +26,6 @@ const UseSaveAndRestore = (url, itemIdentifier) => {
         throw new Error("Something went wrong!");
       }
       const data = await response.json();
-      console.log(data);
 
       const loadedItems = [];
 
@@ -55,42 +65,49 @@ const UseSaveAndRestore = (url, itemIdentifier) => {
           });
         }
       }
-    
-      setItems(loadedItems);
 
+      setItems(loadedItems.sort(compareItems));
     } catch (error) {
       setError(error.message);
     }
     setIsLoading(false);
-  }, []);
+  }, [compareItems]);
 
   async function addItemHandler(newItem) {
-    const response = await fetch(url, {
+    const response = await fetch(url_f, {
       method: 'POST',
       body: JSON.stringify(newItem),
       headers: {
         'Content-Type': 'application/json'
       }
     });
-    const data = await response.json();
-    console.log(data);
+    const id_addedItem = await response.json();
+    newItem.id = id_addedItem.name;
 
     setItems((prevItems) => {
-      return [...prevItems, newItem].sort((a, b) => {
-        if (a[itemIdentifier] < b[itemIdentifier]) {
-          return -1;
-        }
-        if (a[itemIdentifier] > b[itemIdentifier]) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
+      return [...prevItems, newItem].sort(compareItems);
     });
   }
 
-  const removeItemHandler = (itemName) => {
-    console.log(itemName);
+  const removeItemHandler = async (id) => {
+    const response = await fetch(url_f.substr(0, url_f.length - 5) + "/" + id + ".json", {
+      method: "DELETE",
+    });
+    await response.json();
+
+    setItems((prevItems) => {
+      let index = -1;
+      for (let i = 0; i < prevItems.length; i++) {
+        if (prevItems[i].id === id) {
+          index = i;
+          break;
+        }
+      }
+      if (index !== -1) {
+        prevItems.splice(index, 1);
+      }
+      return [...prevItems];
+    });
   };
 
   // let content = <p>Found no movies.</p>;
