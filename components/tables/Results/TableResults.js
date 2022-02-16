@@ -1,7 +1,6 @@
 import React from "react";
 
 import ResultItem from "./ResultItem";
-
 import "./TableResults.css";
 
 function TableResults(props) {
@@ -38,40 +37,6 @@ function TableResults(props) {
     return date_output;
   };
 
-  const removeResultHandler = (gameId) => {
-    props.onRemoveResult(gameId);
-  };
-
-
-
-  // <div>
-  //     <table id="resultlist">
-  //       <thead>
-  //         <tr>
-  //           <th>Datum</th>
-  //           <th>Runde</th>
-  //           <th>Ort</th>
-  //           <th>Ergebnis</th>
-  //           <th></th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {props.results.map((result) => (
-  //           <ResultItem
-  //             key={result.gameId}
-  //             gameId={result.gameId}
-  //             players={result.players}
-  //             decks={result.decks}
-  //             gameDate={result.gameDate}
-  //             gameRound={result.gameRound}
-  //             gameLocation={result.gameLocation}
-  //             onRemoveResult={removeResultHandler}
-  //           />
-  //         ))}
-  //       </tbody>
-  //     </table>
-  //   </div>
-
   return (
     <div id="table_results">
       {createDateArray(props.results).map((date) => (
@@ -85,11 +50,12 @@ function TableResults(props) {
             {props.results.filter(result => result.gameDate === date.gameDate).map(result => (
               <ResultItem
                 key={result.gameId}
+                id={result.id}
                 gameId={result.gameId}
                 players={result.players}
                 decks={result.decks}
                 gameRound={result.gameRound}
-                onRemoveResult={removeResultHandler}
+                onRemoveResult={props.onRemoveResult}
               />
             ))}
           </div>

@@ -28,3 +28,17 @@
     margin: 20px;
     margin-top: 50px;
 }
+
+.headline {
+    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+    font-size: 28pt;
+}
+
+.headline_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px 20px 30px 20px;
+}
+

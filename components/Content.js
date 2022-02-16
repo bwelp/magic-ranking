@@ -1,44 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 
 import "./Content.css";
 import UseSaveAndRestore from "../hooks/use-save-restore";
-import Players from "./content/Players";
-import Decks from "./content/Decks";
-import Results from "./content/Results";
+// import Players from "./content/Players";
+// import Decks from "./content/Decks";
+// import Results from "./content/Results";
 import Ranking from "./content/Ranking";
 
+const Players = React.lazy(() => import("./content/Players"));
+const Decks = React.lazy(() => import("./content/Decks"));
+const Results = React.lazy(() => import("./content/Results"));
+
 function Content(props) {
+const {
+  items: players,
+  restoreItems: restorePlayers,
+  addItemHandler: addPlayerHandler,
+  removeItemHandler: removePlayerHandler,
+} = UseSaveAndRestore("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/players.json", "player");
 
-  const {
-    items: players,
-    addItemHandler: addPlayerHandler,
-    removeItemHandler: removePlayerHandler,
-  } = UseSaveAndRestore("players", "player");
+const {
+  items: decks,
+  restoreItems: restoreDecks,
+  addItemHandler: addDeckHandler,
+  removeItemHandler: removeDeckHandler,
+} = UseSaveAndRestore("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/decks.json", "deckname");
 
-  const {
-    items: decks,
-    addItemHandler: addDeckHandler,
-    removeItemHandler: removeDeckHandler,
-  } = UseSaveAndRestore("decks", "deckname");
-
-  const {
-    items: results,
-    addItemHandler: addResultHandler,
-    removeItemHandler: removeResultHandler,
-  } = UseSaveAndRestore("results", "gameId");
-
-  useEffect(() => {
-    localStorage.setItem("players", JSON.stringify(players));
-  }, [players]);
+const {
+  items: results,
+  restoreItems: restoreResults,
+  addItemHandler: addResultHandler,
+  removeItemHandler: removeResultHandler,
+} = UseSaveAndRestore("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/results.json", "gameId");
 
   useEffect(() => {
-    localStorage.setItem("decks", JSON.stringify(decks));
-  }, [decks]);
+    restorePlayers("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/players.json", "players");
+  }, [restorePlayers]);
 
   useEffect(() => {
-    localStorage.setItem("results", JSON.stringify(results));
-  }, [results]);
+    restoreDecks("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/decks.json", "decks");
+  }, [restoreDecks]);
 
+  useEffect(() => {
+    restoreResults("https://magic-ranking-default-rtdb.europe-west1.firebasedatabase.app/results.json", "results");
+  }, [restoreResults]);
 
   const chooseContent = () => {
     switch (props.items) {
@@ -53,7 +58,7 @@ function Content(props) {
     }
   };
 
-  return <div>{chooseContent()}</div>;
+  return <div><Suspense fallback={<div className="centered" id="loading">Loading...</div>}>{chooseContent()}</Suspense></div>;
 }
 
 export default Content;
