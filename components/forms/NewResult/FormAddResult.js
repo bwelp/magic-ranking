@@ -11,9 +11,12 @@ const FormAddResult = (props) => {
   const [decksArrayContainsDuplicates, setDecksArrayContainsDuplicates] = useState(false);
   const [playersArrayContainsInvalidValue, setPlayersArrayContainsInvalidValue] = useState(false);
   const [decksArrayContainsInvalidValue, setDecksArrayContainsInvalidValue] = useState(false);
+  const [deckEvalsArrayContainsInvalidValue, setDeckEvalsArrayContainsInvalidValue] = useState(false);
+  const [deckEvalCheck, setDeckEvalCheck] = useState(false);
 
   const playerInputRef = useRef([]);
   const deckInputRef = useRef([]);
+  const deckEvalInputRef = useRef([]);
   // const gameRoundInputRef = useRef();
   // const gameLocationInputRef = useRef();
   // const gameDateInputRef = useRef();
@@ -29,8 +32,17 @@ const FormAddResult = (props) => {
   };
 
   let chooseNumberOfPlayersArray = [];
-  for (let i = 0; i < props.players.length; i++) {
+  for (let i = 0; i < props.players.length -1; i++) {
     chooseNumberOfPlayersArray[i] = i + 2;
+  }
+
+  const deckEvalCheckChangeHandler = (event) => {
+    if(event.target.checked === true) {
+      setDeckEvalCheck(true);
+    }
+    else {
+      setDeckEvalCheck(false);
+    }
   }
 
   const {
@@ -101,14 +113,31 @@ const FormAddResult = (props) => {
     deckInputRef.current.forEach((deck, index) => {
       if (
         index >=
-        playerInputRef.current.length - numberOfPlayersArray.length
+        deckInputRef.current.length - numberOfPlayersArray.length
       ) {
         enteredDecks.push(deck.value);
       }
     });
 
+    let enteredDeckEvals = [];
+    if (deckEvalCheck === false) {
+      deckEvalInputRef.current.forEach((deckEval, index) => {
+        if (
+          index >=
+          deckEvalInputRef.current.length - numberOfPlayersArray.length
+        ) {
+          enteredDeckEvals.push(deckEval.value);
+        }
+      });
+    } else {
+      for(let i = 0; i < numberOfPlayersArray.length; i++) {
+        enteredDeckEvals.push(0);
+      }
+    }
+
     let playersArrContainsInvalidValue = enteredPlayers.includes("");
     let decksArrContainsInvalidValue = enteredDecks.includes("");
+    let deckEvalsArrContainsInvalidValue = enteredDeckEvals.includes("");
 
     playersArrContainsInvalidValue
     ? setPlayersArrayContainsInvalidValue(true)
@@ -116,6 +145,9 @@ const FormAddResult = (props) => {
     decksArrContainsInvalidValue
     ? setDecksArrayContainsInvalidValue(true)
     : setDecksArrayContainsInvalidValue(false);
+    deckEvalsArrContainsInvalidValue
+    ? setDeckEvalsArrayContainsInvalidValue(true)
+    : setDeckEvalsArrayContainsInvalidValue(false);
 
     let playersArrContainsDuplicates = arrayContainsDuplicates(enteredPlayers);
     let decksArrContainsDuplicates = arrayContainsDuplicates(enteredDecks);
@@ -127,7 +159,7 @@ const FormAddResult = (props) => {
       ? setDecksArrayContainsDuplicates(true)
       : setDecksArrayContainsDuplicates(false);
 
-    if (playersArrContainsDuplicates || decksArrContainsDuplicates || playersArrContainsInvalidValue || decksArrContainsInvalidValue) {
+    if (playersArrContainsDuplicates || decksArrContainsDuplicates || playersArrContainsInvalidValue || decksArrContainsInvalidValue || deckEvalsArrContainsInvalidValue) {
       return;
     }
 
@@ -138,6 +170,8 @@ const FormAddResult = (props) => {
     let result = {
       players: enteredPlayers,
       decks: enteredDecks,
+      deckEvals: enteredDeckEvals,
+      deckEvalCheck: deckEvalCheck,
       gameRound: gameRound,
       gameLocation: gameLocation,
       gameDate: gameDate,
@@ -148,10 +182,12 @@ const FormAddResult = (props) => {
 
     playerInputRef.current = [];
     deckInputRef.current = [];
+    deckEvalInputRef.current = [];
     // gameRoundInputRef.current.value = '';
     // gameLocationInputRef.current.value = '';
     // gameDateInputRef.current.value = '';
 
+    setDeckEvalCheck(false);
     resetGameRound();
     resetGameLocation();
     resetGameDate();
@@ -159,6 +195,9 @@ const FormAddResult = (props) => {
 
   return (
     <div className="form_add_result">
+      <div id="add_result__header">
+        Ergebnis hinzufügen
+      </div>
       <form type="submit" id="add-result" onSubmit={submitHandler}>
         <div id="add_result__number_of_players">
           <label htmlFor="number-of-players">Anzahl Mitspieler: </label>
@@ -209,9 +248,21 @@ const FormAddResult = (props) => {
                     />
                   ))}
                 </select>
+                {!deckEvalCheck && (<input
+                  type="number"
+                  id={`deckEval${number}`}
+                  name={`deckEval${number}`}
+                  form="add-result"
+                  className="add_result__deck_eval"
+                  min="1"
+                  max="10"
+                  step="0.1"
+                  placeholder="Bewertung"
+                  ref={(element) => deckEvalInputRef.current.push(element)}
+                />)}
               </div>
             ))}
-            {playersArrayContainsInvalidValue && (
+          {playersArrayContainsInvalidValue && (
             <p className="error-text">
               Bitte für alle Spieler einen gültigen Namen angeben!
             </p>
@@ -219,6 +270,12 @@ const FormAddResult = (props) => {
           {decksArrayContainsInvalidValue && (
             <p className="error-text">
               Bitte für alle Spieler ein gültiges Deck angeben!
+            </p>
+          )}
+          {deckEvalsArrayContainsInvalidValue && (
+            <p className="error-text">
+              Bitte für alle Decks eine gültige Bewertung zwischen 1 und 10
+              angeben!
             </p>
           )}
           {playersArrayContainsDuplicates && (
@@ -232,6 +289,18 @@ const FormAddResult = (props) => {
             </p>
           )}
         </div>
+        {numberOfPlayersArray.length > 0 && (<div id="add_result__deck_eval_check">
+          <input
+            type="checkbox"
+            id="deckEvalCheck"
+            name="deckEvalCheck"
+            form="add-result"
+            className="add_result__deck_eval_check"
+            onChange={deckEvalCheckChangeHandler}
+            value={deckEvalCheck}
+          />
+          <label htmlFor="deckEvalCheck">keine Bewertung</label>
+        </div>)}
         <div id="add_result__game_round" className={gameRoundInputClasses}>
           <label htmlFor="game-round">Spielrunde </label>
           <input
@@ -296,7 +365,6 @@ const FormAddResult = (props) => {
           </button>
         </div>
       </form>
-    
     </div>
   );
 };

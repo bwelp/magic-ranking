@@ -12,7 +12,7 @@ import red from "../../../img/red_lightgray.jpg";
 import green from "../../../img/green_lightgray.jpg";
 import colorlessImg from "../../../img/colorless_lightgray.jpg";
 
-const FormAddDeck = (props) => {
+const FormChangeDeck = (props) => {
   const {
     value: deckname,
     isValid: decknameIsValid,
@@ -95,61 +95,7 @@ const FormAddDeck = (props) => {
     resetInput: resetColorless,
   } = useFormInput("checkbox", () => true);
 
-  // const [deckname, setDeckname] = useState("");
-  // const [commander, setCommander] = useState("");
-  // const [secondCommanderCheck, setSecondCommanderCheck] = useState(false);
-  // const [secondCommander, setSecondCommander] = useState("");
-  // const [player, setPlayer] = useState("");
-  // const [colorWhite, setColorWhite] = useState(false);
-  // const [colorBlue, setColorBlue] = useState(false);
-  // const [colorBlack, setColorBlack] = useState(false);
-  // const [colorRed, setColorRed] = useState(false);
-  // const [colorGreen, setColorGreen] = useState(false);
-  // const [colorless, setColorless] = useState(false);
-
-  // const decknameChangeHandler = (event) => {
-  //   setDeckname(event.target.value);
-  // };
-
-  // const saveCommanderHandler = (commanderName) => {
-  //   setCommander(commanderName);
-  // };
-
-  // const checkSecondCommanderHandler = (hasSecondCommander) => {
-  //   setSecondCommanderCheck(hasSecondCommander);
-  // };
-
-  // const saveSecondCommanderHandler = (secondCommanderName) => {
-  //   setSecondCommander(secondCommanderName);
-  // };
-
-  // const playerDropdownChangeHandler = (event) => {
-  //   setPlayer(event.target.value);
-  // };
-
-  // const colorWhiteChangeHandler = (event) => {
-  //   setColorWhite(event.target.checked);
-  // };
-
-  // const colorBlueChangeHandler = (event) => {
-  //   setColorBlue(event.target.checked);
-  // };
-
-  // const colorBlackChangeHandler = (event) => {
-  //   setColorBlack(event.target.checked);
-  // };
-
-  // const colorRedChangeHandler = (event) => {
-  //   setColorRed(event.target.checked);
-  // };
-
-  // const colorGreenChangeHandler = (event) => {
-  //   setColorGreen(event.target.checked);
-  // };
-
-  // const colorlessChangeHandler = (event) => {
-  //   setColorless(event.target.checked);
-  // };
+  
 
   const compareDecknames = () => {
     for (let i = 0; i < props.decks.length; i++) {
@@ -246,7 +192,7 @@ const FormAddDeck = (props) => {
   return (
     <div className="form_add_deck">
       <div id="add_deck__header">
-        Deck hinzufügen
+        Deck ändern
       </div>
       <form
         type="submit"
@@ -398,7 +344,7 @@ const FormAddDeck = (props) => {
 
         <div>
           <button type="submit" form="add-deck" disabled={!formIsValid}>
-            Deck hinzufügen
+            Deck ändern
           </button>
           <button type="button" onClick={props.onCancel}>
             abbrechen
@@ -409,4 +355,4 @@ const FormAddDeck = (props) => {
   );
 };
 
-export default FormAddDeck;
+export default FormChangeDeck;

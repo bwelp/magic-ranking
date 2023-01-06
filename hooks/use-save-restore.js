@@ -62,6 +62,8 @@ const UseSaveAndRestore = (url_f, itemIdentifier) => {
             gameRound: data[key].gameRound,
             gameLocation: data[key].gameLocation,
             gameDate: data[key].gameDate,
+            deckEvals: data[key].deckEvals,
+            deckEvalCheck: data[key].deckEvalCheck
           });
         }
       }

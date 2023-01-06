@@ -54,8 +54,10 @@ function TableResults(props) {
                 gameId={result.gameId}
                 players={result.players}
                 decks={result.decks}
+                deckEvals={result.deckEvals}
                 gameRound={result.gameRound}
                 onRemoveResult={props.onRemoveResult}
+                onChangeResult={props.onChangeResult}
               />
             ))}
           </div>

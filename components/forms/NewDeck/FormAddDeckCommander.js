@@ -27,7 +27,7 @@ const FormAddCommander = (props) => {
     if (props.secondCommanderCheck === true) {
       return (
         <div className={props.secondCommanderInputClasses}>
-          <label htmlFor="secondCommander">2. Commander </label>
+          <label className="add_deck__label" htmlFor="secondCommander">2. Commander </label>
           <input
             type="text"
             id="secondCommander"
@@ -66,7 +66,7 @@ const FormAddCommander = (props) => {
   return (
     <div>
       <div className={props.commanderInputClasses}>
-        <label htmlFor="commander">Commander </label>
+        <label className="add_deck__label" htmlFor="commander">Commander </label>
         <input
           type="text"
           id="commander"

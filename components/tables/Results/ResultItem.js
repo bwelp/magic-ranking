@@ -1,6 +1,10 @@
 import React from "react";
 
-import './ResultItem.css';
+import "./ResultItem.css";
+
+import star from "../../../img/star_lightgray.png";
+import change from "../../../img/change_gray.png";
+import deleteX from "../../../img/delete_gray_2.png";
 
 const ResultItem = (props) => {
 
@@ -8,26 +12,61 @@ const ResultItem = (props) => {
     props.onRemoveResult(event.target.attributes.resultid.value);
   };
 
+  const changeResultClickHandler = (event) => {
+    console.log("Change Deck");
+    //props.onChangeResult(event.target.attributes.reusltid.value);
+  };
+
+  // <div>
+  //       {props.players.map((player, index) => (
+  //         <div key={player}>
+  //           {props.decks[index]}
+  //         </div>
+  //       ))}
+  //     </div>
+  //     <div>
+  //       {props.players.map((player, index) => (
+  //         <div key={player}>
+  //           {props.deckEvals[index]}
+  //         </div>
+  //       ))}
+  //     </div>
+
   return (
     <div className="result_item">
       <div className="result_item__round">{`Runde ${props.gameRound}`}</div>
       <div className="result_item__list">
         {props.players.map((player, index) => (
-          <div key={player}>
-            {`${index + 1}. `} {player} ({props.decks[index]})
+          <div className="result_item__list_content" key={player}>
+            <div className="result_item__list_player">
+              {`${index + 1}. `} {player}
+            </div>
+            <div className="result_item__list_deck">{props.decks[index]}</div>
+            <div className="result_item__list_power">
+              <img src={star} alt="S" className="result_item__img" />{" "}
+              {parseInt(props.deckEvals[index]) === 0 ? "" : props.deckEvals[index]}</div>
           </div>
         ))}
       </div>
       <div>
-        <button
-          type="click"
-          className="result_item__remove_button"
+        <img
+          src={change} 
+          alt="C"
+          className="result_item__button"
+          onClick={changeResultClickHandler}
+          gameid={props.gameId}
+          resultid={props.id}
+        />
+      </div>
+      <div>
+        <img
+          src={deleteX}
+          alt="X"
+          className="result_item__button"
           onClick={removeResultClickHandler}
           gameid={props.gameId}
           resultid={props.id}
-        >
-          X
-        </button>
+        />
       </div>
     </div>
   );

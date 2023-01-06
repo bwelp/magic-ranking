@@ -4,12 +4,27 @@
 
 #active_deck__container {
     margin: 10px;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 20px;
+    /* border: 2px solid lightgray;
+    border-radius: 10px; */
+    /* padding: 20px; */
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
 
-#active_deck__data {
+.active_deck__header {
+    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+    font-size: 20px;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.active_deck__img {
+    width: 16px;
+    margin-right: 8px;
+}
+
+/* #active_deck__data {
     display: flex;
     justify-content: space-between;
     background-color: lightgray;
@@ -26,14 +41,14 @@
 .active_deck__img {
     width: 20px;
     margin-right: 5px;
-}
-
+} */
+/* 
 .active_deck__deckname,
 .active_deck__commander {
     width: 300px;
     font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
     font-size: 20px;
-}
+} */
 
 #active_deck__statistics {
     margin: 10px;

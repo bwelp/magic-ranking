@@ -1,5 +1,5 @@
-.table_decks {
-    width: 600px;
+#table_decks {
+    width: 1200px;
     max-width: 60%;
     min-width: 40%;
     margin: 10px;

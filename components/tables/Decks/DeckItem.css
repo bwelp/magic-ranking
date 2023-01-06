@@ -5,7 +5,7 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     margin: 5px;
-    width: 700px;
+    width: 1200px;
     max-width: 100%;
     min-width: 90%;
     padding: 5px;
@@ -26,12 +26,55 @@
 
 .deck_item__deckname,
 .deck_item__commander {
-    width: 200px;
+    width: 500px;
+    margin-right: 20px;
     font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
 }
 
-.deck_item__remove_button:hover,
+.deck_item__power {
+    width: 150px;
+    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+}
+
+/* .deck_item__remove_button:hover,
 .deck_item__remove_button:active {
     opacity: 0.8;
     cursor: pointer;
+} */
+
+
+/* .deck_item button {
+    margin-right: 10px;
+    background-color: #E6E6E6;
+    border: 1px solid #8C8C8C;
+    border-radius: 3px;
+    padding: 3px 7px 3px 7px;
 }
+
+.deck_item__remove_button:hover,
+.deck_item__remove_button:active,
+.deck_item__change_button:hover,
+.deck_item__change_button:active  {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.deck_item__button_img {
+    width: 16px;
+} */
+
+.deck_item__button {
+    margin-right: 10px;
+    background-color: #E6E6E6;
+    border: 1px solid #8C8C8C;
+    border-radius: 3px;
+    padding: 3px 7px 3px 7px;
+    width: 32px;
+}
+
+.deck_item__button:hover,
+.deck_item__button:active {
+    opacity: 0.5;
+    cursor: pointer;
+}
+

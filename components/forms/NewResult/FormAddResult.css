@@ -1,8 +1,22 @@
 .form_add_result {
     margin: 10px;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    padding: 20px;
+    /* border: 2px solid lightgray; */
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(235, 235, 235);
+    border: 1px solid rgb(235, 235, 235);
+}
+
+.form_add_result label{
+  width: 150px;
+  display: inline-block
+}
+
+#add_result__header {
+    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+    font-size: 24px;
+    margin: 10px;
+    margin-bottom: 20px;
 }
 
 .form_add_result input {
@@ -21,6 +35,14 @@
 #add_result__game_date {
     margin: 10px;
 }
+
+.add_result__deck_eval{
+  width: 100px
+}
+
+/* input[type="number"] {
+  width:100px;
+} */
 
 .form_add_result button {
     cursor: pointer;

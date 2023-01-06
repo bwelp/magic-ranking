@@ -5,9 +5,26 @@
 
 .form_add_deck {
     margin: 10px;
-    border: 2px solid lightgray;
+    /* border: 2px solid lightgray; */
     border-radius: 10px;
     padding: 20px;
+    width: 1140px;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    ;
+}
+
+#add_deck__header {
+    font-family: "Beleren Bold", "Matrix Bold", Helvetica, sans-serif;
+    font-size: 24px;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+
+.add_deck__label {
+    width: 120px;
+    display: inline-block
 }
 
 .form_add_deck input {
@@ -67,15 +84,16 @@
 .form_add_deck button:disabled,
 .form_add_deck button:disabled:hover,
 .form_add_deck button:disabled:active {
-  background-color:#ccc;
+  /* background-color:#ccc; */
+background-color:rgb(235, 235, 235);
   color: #292929;
-  border-color: #ccc;
+  border-color:  rgb(235, 235, 235);
   cursor: not-allowed;
 }
 
-#deckname {
+/* #deckname {
     margin-left: 55px;
-}
+} */
 
 .invalid input {
     border: 1px solid #b40e0e;

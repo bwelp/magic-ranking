@@ -9,10 +9,19 @@ import red from "../../../img/red_lightgray.jpg";
 import green from "../../../img/green_lightgray.jpg";
 import colorlessImg from "../../../img/colorless_lightgray.jpg";
 import commander_symbol from "../../../img/commander_symbol_2_lightgray.png";
+import star from "../../../img/star_lightgray.png";
+import change from "../../../img/change_gray.png";
+import deleteX from "../../../img/delete_gray_2.png";
 
 const DeckItem = (props) => {
+
   const removeDeckClickHandler = (event) => {
     props.onRemoveDeck(event.target.attributes.deckid.value);
+  };
+
+  const changeDeckClickHandler = (event) => {
+    console.log("Change Deck");
+    //props.onChangeDeck(event.target.attributes.deckid.value);
   };
 
   const deckItemClickHandler = (event) => {
@@ -97,17 +106,31 @@ const DeckItem = (props) => {
         )}
         {props.secondCommander}
       </div>
+      <div className="deck_item__power" deck={props.deckname}>
+        <img src={star} alt="S" className="deck_item__img" />{" "}
+        {props.power}
+      </div>
       <div>
-        <button
-          type="click"
-          className="deck_item__remove_button"
+        <img
+          src={change}
+          alt="C"
+          className="deck_item__button"
+          onClick={changeDeckClickHandler}
+          deck=""
+          deckname={props.deckname}
+          deckid={props.id}
+        />
+      </div>
+      <div>
+        <img
+          src={deleteX}
+          alt="X"
+          className="deck_item__button"
           onClick={removeDeckClickHandler}
           deck=""
           deckname={props.deckname}
           deckid={props.id}
-        >
-          X
-        </button>
+        />
       </div>
     </div>
   );
