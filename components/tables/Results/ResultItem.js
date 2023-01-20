@@ -9,7 +9,9 @@ import deleteX from "../../../img/delete_gray_2.png";
 const ResultItem = (props) => {
 
   const removeResultClickHandler = (event) => {
-    props.onRemoveResult(event.target.attributes.resultid.value);
+    if(window.confirm("Soll dieses Ergebnis wirklichh gelöscht werden?") === true) {
+      props.onRemoveResult(event.target.attributes.resultid.value);
+    }
   };
 
   const changeResultClickHandler = (event) => {
@@ -32,15 +34,18 @@ const ResultItem = (props) => {
   //       ))}
   //     </div>
 
+  // <div className="result_item__list_player">
+  //             {`${index + 1}. `} {player}
+  //           </div>
+
   return (
     <div className="result_item">
       <div className="result_item__round">{`Runde ${props.gameRound}`}</div>
       <div className="result_item__list">
         {props.players.map((player, index) => (
           <div className="result_item__list_content" key={player}>
-            <div className="result_item__list_player">
-              {`${index + 1}. `} {player}
-            </div>
+            <div className="result_item__list_place"> {props.places[index]}{". "}</div>
+            <div className="result_item__list_player"> {player} </div>
             <div className="result_item__list_deck">{props.decks[index]}</div>
             <div className="result_item__list_power">
               <img src={star} alt="S" className="result_item__img" />{" "}

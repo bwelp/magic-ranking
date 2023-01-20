@@ -41,24 +41,23 @@ function Players(props) {
     let bestDeckColorless = false;
 
     for (let i = 0; i < props.results.length; i++) {
-      if (props.results[i].players[0] === player) {
-        numberOfPlace1++;
-        winnerDeckArray.push(props.results[i].decks[0]);
-      }
-      if (props.results[i].players[1] === player) {
-        numberOfPlace2++;
-      }
-      if (props.results[i].players[2] === player) {
-        numberOfPlace3++;
-      }
-      for (let j = 3; j < props.results[i].players.length; j++) {
-        if (props.results[i].players[j] === player) {
-          numberOfPlace4Plus++;
-        }
-      }
       for (let j = 0; j < props.results[i].players.length; j++) {
         if (props.results[i].players[j] === player) {
           numberOfGames++;
+
+          if (props.results[i].places[j] === "1") {
+            numberOfPlace1++;
+            winnerDeckArray.push(props.results[i].decks[j]);
+          }
+          else if (props.results[i].places[j] === "2") {
+            numberOfPlace2++;
+          }
+          else if (props.results[i].places[j] === "3") {
+            numberOfPlace3++;
+          }
+          else {
+            numberOfPlace4Plus++;
+          }
         }
       }
     }

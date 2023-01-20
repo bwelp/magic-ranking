@@ -23,23 +23,23 @@ function TableDecks(props) {
     let minEval = 10;
     let maxEval = 0;
     for (let i = 0; i < props.results.length; i++) {
-      if (props.results[i].decks[0] === deckname) {
-        numOfPlace1++;
-      }
-      if (props.results[i].decks[1] === deckname) {
-        numOfPlace2++;
-      }
-      if (props.results[i].decks[2] === deckname) {
-        numOfPlace3++;
-      }
-      for (let j = 3; j < props.results[i].decks.length; j++) {
-        if (props.results[i].decks[j] === deckname) {
-          numOfPlace4Plus++;
-        }
-      }
       for (let j = 0; j < props.results[i].decks.length; j++) {
         if (props.results[i].decks[j] === deckname) {
           numOfGames++;
+
+          if (props.results[i].places[j] === "1") {
+            numOfPlace1++;
+          }
+          else if (props.results[i].places[j] === "2") {
+            numOfPlace2++;
+          }
+          else if (props.results[i].places[j] === "3") {
+            numOfPlace3++;
+          }
+          else {
+            numOfPlace4Plus++;
+          }
+
           if (props.results[i].deckEvalCheck === false) {
             countEval++;
             let evalX = props.results[i].deckEvals[j];

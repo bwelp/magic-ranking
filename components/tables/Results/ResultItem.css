@@ -19,7 +19,7 @@
 } */
 
 .result_item__round {
-    width: 200px;
+    width: 500px;
     margin-right: 20px;
 }
 
@@ -33,13 +33,18 @@
     flex-direction: row;
 }
 
+.result_item__list_place{
+    width: 50px;
+    margin-right: 20px;
+}
+
 .result_item__list_player{
-    width: 200px;
+    width: 150px;
     margin-right: 20px;
 }
 
 .result_item__list_deck{
-    width: 500px;
+    width: 450px;
     margin-right: 20px;
 }
 

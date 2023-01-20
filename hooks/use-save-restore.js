@@ -57,6 +57,7 @@ const UseSaveAndRestore = (url_f, itemIdentifier) => {
           loadedItems.push({
             id: key,
             gameId: data[key].gameId,
+            places: data[key].places,
             players: data[key].players,
             decks: data[key].decks,
             gameRound: data[key].gameRound,

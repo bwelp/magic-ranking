@@ -30,12 +30,20 @@ const TableRanking = (props) => {
         let numSecondPlace = 0;
         let numRounds = 0;
         filteredResults.forEach((result) => {
-          if (result.players[0] === player.player) {
-            numWins += 1;
+          for (let i = 0; i < result.places.length; i++) {
+            if (result.players[i] === player.player) {
+              if (result.places[i] === "1") {
+                numWins +=1 ;
+              }
+              else if (result.places[i] === "2") {
+                numSecondPlace += 1;
+              }
+              else {
+                break;
+              }
+            }
           }
-          if (result.players[1] === player.player) {
-            numSecondPlace += 1;
-          }
+
           result.players.forEach((p) => {
             if (p === player.player) {
               numRounds += 1;

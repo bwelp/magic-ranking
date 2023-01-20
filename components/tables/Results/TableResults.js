@@ -52,6 +52,7 @@ function TableResults(props) {
                 key={result.gameId}
                 id={result.id}
                 gameId={result.gameId}
+                places={result.places}
                 players={result.players}
                 decks={result.decks}
                 deckEvals={result.deckEvals}

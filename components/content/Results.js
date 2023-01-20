@@ -6,6 +6,7 @@ import NewResult from "../forms/NewResult/NewResult";
 import TableResults from "../tables/Results/TableResults";
 
 function Results(props) {
+
   const [addResultBoxActive, setAddResultBoxActive] = useState(false);
   //const [changeResultBoxActive, setChangeResultBoxActive] = useState(false);
   //const [resultToChange, setResultToChange] = useState({});
