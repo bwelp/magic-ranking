@@ -9,7 +9,7 @@ import deleteX from "../../../img/delete_gray_2.png";
 const ResultItem = (props) => {
 
   const removeResultClickHandler = (event) => {
-    if(window.confirm("Soll dieses Ergebnis wirklichh gelöscht werden?") === true) {
+    if(window.confirm("Soll dieses Ergebnis wirklich gelöscht werden?") === true) {
       props.onRemoveResult(event.target.attributes.resultid.value);
     }
   };

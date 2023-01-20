@@ -16,7 +16,9 @@ import deleteX from "../../../img/delete_gray_2.png";
 const DeckItem = (props) => {
 
   const removeDeckClickHandler = (event) => {
-    props.onRemoveDeck(event.target.attributes.deckid.value);
+    if(window.confirm("Soll dieses Deck wirklich gelöscht werden?") === true) {
+      props.onRemoveDeck(event.target.attributes.deckid.value);
+    }
   };
 
   const changeDeckClickHandler = (event) => {

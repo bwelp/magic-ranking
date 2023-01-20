@@ -4,7 +4,9 @@ import "./PlayerItem.css";
 
 const PlayerItem = (props) => {
   const removePlayerClickHandler = (event) => {
-    props.onRemovePlayer(event.target.attributes.playerid.value);
+    if(window.confirm("Soll dieser Spieler wirklich gelöscht werden?") === true) {
+      props.onRemovePlayer(event.target.attributes.playerid.value);
+    }
   };
 
   const playerItemClickHandler = (event) => {
